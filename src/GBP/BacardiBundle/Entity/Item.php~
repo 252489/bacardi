@@ -1,0 +1,56 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Ivan Koretskiy aka gillbeits ( gillbeits[at]gmail[dot]com )
+ * Date: 11.12.13
+ * Time: 11:58
+ */
+
+namespace GBP\BacardiBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="item")
+ */
+class Item {
+	/**
+	 * @ORM\Column(type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	public $id;
+	/**
+	 * @ORM\Column(type="string", length=100)
+	 */
+	public $name;
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	public $image;
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	public $previewImage;
+	/**
+	 * @ORM\Column(type="smallint")
+	 */
+	public $layer;
+	/**
+	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+	 */
+	public $category;
+	/**
+	 * @ORM\ManyToMany(targetEntity="Employee", mappedBy="items")
+	 */
+	public $employes;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->employes = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+}

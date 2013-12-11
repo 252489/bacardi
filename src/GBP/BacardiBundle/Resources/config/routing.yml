@@ -1,0 +1,7 @@
+gbp_bacardi_homepage:
+    pattern:  /
+    defaults: { _controller: GBPBacardiBundle:Default:index }
+
+gbp_bacardi_get_employee:
+    pattern:  /{email}={hash}
+    defaults: { _controller: GBPBacardiBundle:Default:get }

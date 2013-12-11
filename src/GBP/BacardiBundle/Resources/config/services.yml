@@ -1,0 +1,7 @@
+parameters:
+#    gbp_bacardi.example.class: GBP\BacardiBundle\Example
+
+services:
+#    gbp_bacardi.example:
+#        class: %gbp_bacardi.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
