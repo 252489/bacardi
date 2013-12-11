@@ -32,10 +32,6 @@ class Category {
 	 * @ORM\OneToMany(targetEntity="Item", mappedBy="category")
 	 */
 	public $items;
-	/**
-	 * @ORM\ManyToMany(targetEntity="Employee", mappedBy="categories")
-	 */
-	public $employes;
     /**
      * Constructor
      */

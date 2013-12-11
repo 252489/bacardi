@@ -57,11 +57,6 @@ class Employee {
 	 */
 	public $items;
 	/**
-	 * @ORM\ManyToMany(targetEntity="Category", inversedBy="employes", cascade={"remove", "persist"})
-	 * @ORM\JoinTable(name="employee_categories")
-	 **/
-	public $categories;
-	/**
 	 * @var string
 	 */
 	public $salt;
