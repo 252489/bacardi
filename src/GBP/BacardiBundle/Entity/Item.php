@@ -19,32 +19,32 @@ class Item {
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	public $id;
+	protected $id;
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 */
-	public $name;
+	protected $name;
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	public $image;
+	protected $image;
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	public $previewImage;
+	protected $previewImage;
 	/**
 	 * @ORM\Column(type="smallint")
 	 */
-	public $layer;
+	protected $layer;
 	/**
 	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="items", cascade={"remove", "persist"})
 	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
 	 */
-	public $category;
+	protected $category;
 	/**
 	 * @ORM\ManyToMany(targetEntity="Employee", mappedBy="items")
 	 */
-	public $employes;
+	protected $employes;
 
 	/**
 	 * Constructor

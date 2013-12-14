@@ -9,15 +9,15 @@ var ErrorPopup = {
 		show: function (text) {
 			console.log(text);
 
-			Error.elems.$popup.html(text).show();
-			Error.elems.$popup.css({
-				marginLeft: -Error.elems.$popup.outerWidth() / 2,
-				marginTop: -Error.elems.$popup.outerHeight() / 2
+			ErrorPopup.elems.$popup.html(text).show();
+			ErrorPopup.elems.$popup.css({
+				marginLeft: -ErrorPopup.elems.$popup.outerWidth() / 2,
+				marginTop: -ErrorPopup.elems.$popup.outerHeight() / 2
 			}).addClass('active');
 		},
 
 		hide: function () {
-			Error.elems.$popup.hide().removeClass('active');
+			ErrorPopup.elems.$popup.hide().removeClass('active');
 		}
 
 	},
@@ -29,7 +29,7 @@ var ErrorPopup = {
 		});
 
 		$(document).on('click.closeError', function () {
-			Error.methods.hide();
+			ErrorPopup.methods.hide();
 		});
 
 	},

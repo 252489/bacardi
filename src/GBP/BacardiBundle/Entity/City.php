@@ -19,16 +19,16 @@ class City {
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	public $id;
+	protected $id;
 	/**
 	 * @ORM\Column(type="string", length=100, unique=true)
 	 */
-	public $name;
+	protected $name;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="city")
 	 */
-	public $employes;
+	protected $employes;
 
 	public function __construct()
 	{

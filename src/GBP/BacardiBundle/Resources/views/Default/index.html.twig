@@ -1,4 +1,27 @@
 {% extends 'GBPBacardiBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {% stylesheets 'bundles/gbpbacardi/css/main.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
-	{{ form( form ) }}
+    <div class="b-wrapper">
+        <div class="b-form b-block">
+            {{ form_start(form) }}
+                {{ form_widget(form.name, {'attr': {'class': 'b-form__field js-b-form__field', 'autocomplete': 'off'}}) }}
+                {{ form_widget(form.surname, {'attr': {'class': 'b-form__field js-b-form__field', 'autocomplete': 'off'}}) }}
+                {{ form_widget(form.city.name, {'value' : 'город', 'attr': {'class': 'b-form__field js-b-form__field', 'autocomplete': 'off'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'b-form__field js-b-form__field', 'autocomplete': 'off'}}) }}
+                {{ form_widget(form.save, {'attr': {'class': 'b-form__submit'}}) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="b-error-popup" id="js-b-error-popup"></div>
+    <script type="text/javascript">
+        $(function(){
+            var text = '{{ form_errors(form) }}' || null;
+            text && ErrorPopup.methods.show( text );
+        });
+    </script>
 {% endblock %}

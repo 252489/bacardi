@@ -19,19 +19,19 @@ class Category {
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	public $id;
+	protected $id;
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 */
-	public $name;
+	protected $name;
 	/**
 	 * @ORM\Column(type="boolean", nullable=true)
 	 */
-	public $isFemale;
+	protected $isFemale;
 	/**
 	 * @ORM\OneToMany(targetEntity="Item", mappedBy="category")
 	 */
-	public $items;
+	protected $items;
     /**
      * Constructor
      */

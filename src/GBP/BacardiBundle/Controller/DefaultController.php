@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use GBP\BacardiBundle\Entity\Employee;
 use GBP\BacardiBundle\Entity\City;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
@@ -28,9 +29,10 @@ class DefaultController extends Controller
 			->add('save', 'submit')
 			->getForm();
 
-		if( $this->getRequest()->getMethod() == 'POST' )
+		$request = $this->get('request');
+		if( $request->getMethod() == 'POST' )
 		{
-			$form->handleRequest($this->getRequest());
+			$form->handleRequest($request);
 			if ($form->isValid())
 			{
 				$city = $this->getDoctrine()
@@ -39,8 +41,27 @@ class DefaultController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($city);
 				$em->persist($employee);
+
 				try {
 					$em->flush();
+					$message = \Swift_Message::newInstance()
+						->setSubject('Добро пожаловать на вечеринку Bacardi')
+						->setFrom('info@bacardi.com')
+						->setTo($employee->getEmail())
+						->setBody(
+							$this->renderView(
+								'GBPBacardiBundle:Default:email.html.twig',
+								array(
+									'name' => $employee->getName()
+									, 'link' => $link = $this->generateUrl('gbp_bacardi_get_employee', array(
+										'email' => $employee->getEmail(), 'hash' => $employee->getHash()
+									), UrlGeneratorInterface::ABSOLUTE_URL )
+								)
+							)
+						)
+					;
+					$this->get('mailer')->send($message);
+					return $this->redirect($link);
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
 						$form->addError( new FormError("Такой пользователь уже существует") );
@@ -59,8 +80,8 @@ class DefaultController extends Controller
 			->getRepository('GBPBacardiBundle:Employee')
 			->findOneBy(array('hash' => $hash, 'email' => $email));
 
-		if( $employee )
-			var_dump($employee);
+//		if( $employee )
+//			var_dump($employee);
 		return $this->render('GBPBacardiBundle:Default:index.html.twig', array('name' => 'some name'));
 	}
 }

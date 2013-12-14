@@ -4,23 +4,26 @@
 	<meta charset="UTF-8" />
 	<title>{% block title %}Bacardi party!{% endblock %}</title>
 
-	{% stylesheets 'bundles/gbpbacardi/css/*' filter='cssrewrite' output='css/compiled/main.css' %}
+	{% stylesheets 'bundles/gbpbacardi/css/common.css' filter='cssrewrite' %}
 		<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 
 	{% block stylesheets %}{% endblock %}
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    {% javascripts '@GBPBacardiBundle/Resources/public/js/common/*' '@GBPBacardiBundle/Resources/public/js/*' output='js/compiled/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
 	{% block head %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 	{% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+{% block body %}
+{% endblock %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 {% block javascripts %}{% endblock %}
-{% javascripts '@GBPBacardiBundle/Resources/public/js/*' output='js/compiled/main.js' %}
-	<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+
 </body>
 </html>

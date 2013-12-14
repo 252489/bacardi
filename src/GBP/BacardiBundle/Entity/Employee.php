@@ -21,17 +21,17 @@ class Employee {
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	public $id;
+	protected $id;
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 * @Assert\NotBlank()
 	 */
-	public $name;
+	protected $name;
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 * @Assert\NotBlank()
 	 */
-	public $surname;
+	protected $surname;
 	/**
 	 * @ORM\Column(type="string", unique=true, length=150)
 	 * @Assert\Email(
@@ -39,31 +39,31 @@ class Employee {
 	 *     checkMX = true
 	 * )
 	 */
-	public $email;
+	protected $email;
 	/**
 	 * @ORM\Column(type="boolean", nullable=true)
 	 */
-	public $isFemale;
+	protected $isFemale;
 	/**
 	 * @ORM\ManyToOne(targetEntity="City", inversedBy="employes", cascade={"remove", "persist"})
 	 * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
 	 * @Assert\NotBlank()
 	 * @Assert\Type(type="GBP\BacardiBundle\Entity\City")
 	 */
-	public $city;
+	protected $city;
 	/**
 	 * @ORM\ManyToMany(targetEntity="Item", inversedBy="employes", cascade={"remove", "persist"})
 	 * @ORM\JoinTable(name="employee_items")
 	 */
-	public $items;
+	protected $items;
 	/**
 	 * @var string
 	 */
-	public $salt;
+	protected $salt;
 	/**
 	 * @ORM\Column(type="string", length=40)
 	 */
-	public $hash;
+	protected $hash;
 	/**
 	 * Constructor
 	 */
