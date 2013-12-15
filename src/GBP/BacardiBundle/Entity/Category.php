@@ -35,6 +35,13 @@ class Category {
     /**
      * Constructor
      */
+
+	public function __toString()
+	{
+		$isFemale = !$this->isFemale ? 'м' : 'ж';
+		return "{$this->name} ({$isFemale})";
+	}
+
     public function __construct()
     {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();

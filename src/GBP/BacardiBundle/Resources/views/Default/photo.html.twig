@@ -1,0 +1,45 @@
+{% extends 'GBPBacardiBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {% stylesheets 'bundles/gbpbacardi/css/photo.css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="b-wrapper">
+        <div class="b-photo b-block" id="js-b-photo">
+            <div class="b-error-popup" id="js-b-error-popup"></div>
+
+            <form action="?">
+                <input id="js-sex-input" type="hidden" value="" />
+                <input id="js-img-input" type="hidden" value="" />
+
+                <div class="b-photo__sex">
+                    <div class="b-photo__sex__man js-b-photo__sex active" data-sex="man"></div>
+                    <div class="b-photo__sex__woman js-b-photo__sex" data-sex="woman"></div>
+                </div>
+
+                <label class="b-photo__load" id="js-b-photo__load">
+                    <input class="b-photo__load__input" type="file"/>
+                </label>
+                <div class="b-photo__webcam-btn" id="js-b-photo__webcam-btn"></div>
+                <div class="b-photo__ready-btn" id="js-b-photo__ready-btn"></div>
+                <div class="b-photo__crop-btn" id="js-b-photo__crop-btn"></div>
+
+                <div class="b-photo__img__zoom b-photo__img__zoom_in js-b-photo__img__zoom" id="js-b-photo__img__zoom_in"></div>
+                <div class="b-photo__img__zoom b-photo__img__zoom_out js-b-photo__img__zoom" id="js-b-photo__img__zoom_out"></div>
+                <!--div class="b-photo__img__resize"></div-->
+
+                <div class="b-photo__img__wrapper" id="js-b-photo__img__wrapper">
+                    <div class="b-photo__img__overlay b-photo__img__overlay_top"></div>
+                    <div class="b-photo__img__overlay b-photo__img__overlay_right"></div>
+                    <div class="b-photo__img__overlay b-photo__img__overlay_bottom"></div>
+                    <div class="b-photo__img__overlay b-photo__img__overlay_left"></div>
+
+                    <div class="b-output" id="js-b-output"></div>
+                    <div class="b-crop__result" id="js-b-crop__result"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -65,11 +65,14 @@ class Employee {
 	 */
 	protected $hash;
 	/**
+	 * @ORM\Column(type="blob")
+	 */
+	protected $photo;
+	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
-		$this->categories = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->items = new \Doctrine\Common\Collections\ArrayCollection();
 		$generator = new SecureRandom();
 		$this->salt = $generator->nextBytes(20);
@@ -93,7 +96,7 @@ class Employee {
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = ucfirst($name);
     
         return $this;
     }
@@ -116,7 +119,7 @@ class Employee {
      */
     public function setSurname($surname)
     {
-        $this->surname = $surname;
+        $this->surname = ucfirst($surname);
     
         return $this;
     }
@@ -154,6 +157,28 @@ class Employee {
     {
         return $this->email;
     }
+
+	/**
+	 * Set photo
+	 *
+	 * @param string $photo
+	 * @return Employee
+	 */
+	public function setPhoto($photo)
+	{
+		$this->photo = $photo;
+		return $this;
+	}
+
+	/**
+	 * Get photo
+	 *
+	 * @return string
+	 */
+	public function getPhoto()
+	{
+		return $this->photo;
+	}
 
     /**
      * Set isFemale
@@ -214,9 +239,12 @@ class Employee {
      */
     public function addItem(\GBP\BacardiBundle\Entity\Item $items)
     {
+	    foreach($this->items as $_item)
+		    if( $_item->getCategory()->getId() == $items->getCategory()->getId() )
+			    $this->removeItem($_item);
+
         $this->items[] = $items;
-	    $this->addCategorie($items->getCategory());
-    
+
         return $this;
     }
 
@@ -227,7 +255,6 @@ class Employee {
      */
     public function removeItem(\GBP\BacardiBundle\Entity\Item $items)
     {
-	    $this->removeCategorie($items->getCategory());
         $this->items->removeElement($items);
     }
 
@@ -241,26 +268,16 @@ class Employee {
         return $this->items;
     }
 
-    /**
-     * Add categories
-     *
-     * @param \GBP\BacardiBundle\Entity\Category $categories
-     * @return Employee
-     */
-    private function addCategorie(\GBP\BacardiBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-    
-        return $this;
-    }
+	public function getCategories()
+	{
+		$categories = array();
+		$items = $this->getItems();
+		/**
+		 * @var $item \GBP\BacardiBundle\Entity\Item
+		 */
+		foreach($items as $item)
+			$categories[$item->getId()] = $item->getCategory()->getId();
+		return $categories;
+	}
 
-    /**
-     * Remove categories
-     *
-     * @param \GBP\BacardiBundle\Entity\Category $categories
-     */
-    private function removeCategorie(\GBP\BacardiBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
 }

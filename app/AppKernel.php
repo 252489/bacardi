@@ -17,6 +17,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+	        new Sonata\CoreBundle\SonataCoreBundle(),
+	        new Sonata\BlockBundle\SonataBlockBundle(),
+	        new Sonata\jQueryBundle\SonatajQueryBundle(),
+	        new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+	        new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+	        new Sonata\AdminBundle\SonataAdminBundle(),
+
 	        new GBP\BacardiBundle\GBPBacardiBundle(),
         );
 

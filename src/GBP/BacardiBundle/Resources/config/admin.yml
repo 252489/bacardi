@@ -1,0 +1,31 @@
+services:
+    sonata.admin.item:
+        class: GBP\BacardiBundle\Admin\ItemAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Содержимое", label: "Вещи" }
+        arguments:
+            - ~
+            - GBP\BacardiBundle\Entity\Item
+            - ~
+        calls:
+            - [ setTranslationDomain, [GBPBacardiBundle]]
+    sonata.admin.employee:
+        class: GBP\BacardiBundle\Admin\EmployeeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Содержимое", label: "Сотрудники" }
+        arguments:
+            - ~
+            - GBP\BacardiBundle\Entity\Employee
+            - ~
+        calls:
+            - [ setTranslationDomain, [GBPBacardiBundle]]
+    sonata.admin.category:
+        class: GBP\BacardiBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Содержимое", label: "Категории" }
+        arguments:
+            - ~
+            - GBP\BacardiBundle\Entity\Category
+            - ~
+        calls:
+            - [ setTranslationDomain, [GBPBacardiBundle]]

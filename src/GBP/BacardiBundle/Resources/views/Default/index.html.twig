@@ -20,8 +20,15 @@
     <div class="b-error-popup" id="js-b-error-popup"></div>
     <script type="text/javascript">
         $(function(){
-            var text = '{{ form_errors(form) }}' || null;
+            var text = '{{ form_errors(form) }}' || "";
+
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                text += "{{ flashMessage }}";
+            {% endfor %}
+
             text && ErrorPopup.methods.show( text );
+
+
         });
     </script>
 {% endblock %}

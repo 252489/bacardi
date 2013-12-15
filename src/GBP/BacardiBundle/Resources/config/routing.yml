@@ -5,3 +5,12 @@ gbp_bacardi_homepage:
 gbp_bacardi_get_employee:
     pattern:  /{email}={hash}
     defaults: { _controller: GBPBacardiBundle:Default:get }
+
+gbp_bacardi_cabinet:
+    pattern: /cabinet
+    defaults: { _controller: GBPBacardiBundle:Default:cabinet}
+
+gbp_bacardi_set_item:
+    pattern: /cabinet/{id}
+    defaults: { _controller: GBPBacardiBundle:Default:setitem, _format:json}
+    requirements: { _format: json }

@@ -8,12 +8,16 @@
 
 namespace GBP\BacardiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GBP\BacardiBundle\Repository\ItemRepository")
  * @ORM\Table(name="item")
+ * @ORM\HasLifecycleCallbacks
  */
 class Item {
+
 	/**
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
@@ -45,6 +49,10 @@ class Item {
 	 * @ORM\ManyToMany(targetEntity="Employee", mappedBy="items")
 	 */
 	protected $employes;
+
+	private $file;
+	private $filePreview;
+
 
 	/**
 	 * Constructor
@@ -211,4 +219,54 @@ class Item {
     {
         return $this->employes;
     }
+
+	public function setFile(UploadedFile $file)
+	{
+		$this->file = $file;
+	}
+
+	public function setFilePreview(UploadedFile $file)
+	{
+		$this->filePreview = $file;
+	}
+
+	public function getFile()
+	{
+		return $this->file;
+	}
+
+	public function getFilePreview()
+	{
+		return $this->filePreview;
+	}
+
+	/**
+	 * @ORM\PrePersist()
+	 * @ORM\PreUpdate()
+	 */
+	public function upload()
+	{
+		// the file property can be empty if the field is not required
+		if (null === $this->getFile() && null === $this->getFilePreview() ) {
+			return;
+		}
+
+		$filepath = realpath( dirname(__FILE__) . '/../../../../web/upload/items' );
+		if( null !== $this->getFile() )
+		{
+			$this->getFile()->move(
+				$filepath,
+				$this->getFile()->getClientOriginalName()
+			);
+			$this->image = $this->getFile()->getClientOriginalName();
+		}
+		if( null !== $this->getFilePreview() )
+		{
+			$this->getFilePreview()->move(
+				$filepath,
+				$this->getFilePreview()->getClientOriginalName()
+			);
+			$this->previewImage = $this->getFilePreview()->getClientOriginalName();
+		}
+	}
 }
