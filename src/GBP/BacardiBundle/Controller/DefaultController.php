@@ -153,6 +153,16 @@ class DefaultController extends Controller
 			->getRepository('GBPBacardiBundle:Employee')
 			->findOneBy(array('hash' => $this->get('session')->get('user')->getHash(), 'email' => $this->get('session')->get('user')->getEmail()));
 
+		if( !$employee )
+		{
+			$this->get('session')->set('user', null);
+			$this->get('session')->getFlashBag()->add(
+				'error',
+				'Такого пользователя не существует или ошибка в адресе'
+			);
+			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
+		}
+
 		$items = $this->getDoctrine()
 			->getRepository('GBPBacardiBundle:Item')
 			->findBySexJoinedToCategory($employee->getIsFemale())
@@ -190,7 +200,7 @@ class DefaultController extends Controller
 			, 'categories' => $categories
 			, 'is_female' => $employee->getIsFemale()
 			, 'items' => $items
-			, 'photodata' => $employee->getPhoto()
+			, 'photodata' => $employee->getResizedPhoto(60)
 			, 'form' => $form->createView()
 		));
 	}
@@ -226,6 +236,20 @@ class DefaultController extends Controller
 	public function resultAction()
 	{
 
-		return $this->render( 'GBPBacardiBundle:Default:result.html.twig' );
+		$employee = $this->getDoctrine()
+			->getRepository('GBPBacardiBundle:Employee')
+			->findOneBy(array('hash' => $this->get('session')->get('user')->getHash(), 'email' => $this->get('session')->get('user')->getEmail()));
+		if( !$employee )
+		{
+			$this->get('session')->set('user', null);
+			$this->get('session')->getFlashBag()->add(
+				'error',
+				'Такого пользователя не существует или ошибка в адресе'
+			);
+			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
+		}
+
+
+		return $this->render( 'GBPBacardiBundle:Default:result.html.twig', array('result' => $employee->getResultphoto() ) );
 	}
 }

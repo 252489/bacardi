@@ -219,6 +219,24 @@ class Employee {
 		return $this->photo;
 	}
 
+	public function getResizedPhoto($dst_width)
+	{
+		$photo = str_replace('data:image/png;base64,', '', $this->photo);
+		$img_data = base64_decode($photo);
+		$img = imagecreatefromstring($img_data);
+		list($src_width, $src_height) = getimagesizefromstring($img_data);
+		$percent = $dst_width < $src_width ? $dst_width / $src_width : $src_width / $dst_width;
+		$dst_height = $dst_width < $src_width ? $src_height * $percent : $src_height * (1+$percent);
+		$thumb = imagecreatetruecolor($dst_width, $dst_height);
+		imagecopyresized($thumb, $img, 0, 0, 0, 0, $dst_width, $dst_height, $src_width, $src_height);
+		ob_start();
+		imagepng($thumb);
+		$photo = ob_get_contents();
+		ob_end_clean();
+		$photo = 'data:image/png;base64,' . base64_encode($photo);
+		return $photo;
+	}
+
     /**
      * Set isFemale
      *
