@@ -5,5 +5,6 @@ $(function () {
 
     Page.init();
     Photo.init();
+    Webcam.init();
 
 });

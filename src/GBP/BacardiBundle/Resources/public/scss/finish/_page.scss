@@ -140,3 +140,44 @@
 
 
 
+
+
+
+.b-finish__result {
+	width: 384px;
+	height: 567px;
+	position: absolute;
+	right: 20px;
+	top: 50px;
+}
+
+.b-finish__result__frame__img {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	&.active {
+		display: none;
+	}
+}
+
+.b-finish__result__photo {
+	width: 265px;
+	height: 570px;
+	position: absolute;
+}
+
+.b-finish__result__photo__img {
+	width: 100%;
+	height: 100%;
+}
+
+.b-finish__result__frame {
+	width: 384px;
+	height: 567px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
