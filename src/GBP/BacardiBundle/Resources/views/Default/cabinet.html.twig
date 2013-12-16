@@ -9,7 +9,7 @@
 {% block body %}
     <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_{{ is_female ? 'f' : 'm' }}_page_block_bg.png?4);">
         <div class="b-wardrobe b-block" id="js-b-wardrobe">
-            <form action="<!-- ACTION -->">
+            <form action="<!-- ACTION -->" id="js-b-wardrobe__form">
                 <input id="js-img-input" type="hidden" value=""/>
 
                 <div class="b-wardrobe__popup" id="js-b-wardrobe__popup">
@@ -24,9 +24,7 @@
                     </div>
                 </div>
 
-                <label class="b-wardrobe__ready" id="js-b-wardrobe__ready">
-                    <input class="input_hidden" type="submit"/>
-                </label>
+                <div class="b-wardrobe__ready" id="js-b-wardrobe__ready"></div>
 
                 <div class="b-wardrobe__photo" id="js-b-wardrobe__photo">
                     <img src="{{ photodata }}" style="display: block;width: 60px;z-index: 20;top: 64px;left: 110px;">

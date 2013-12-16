@@ -90,6 +90,7 @@ var Wardrobe = {
 		finish: function () {
 			if (this.checkEmptyWear()) {
 				Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
+                Wardrobe.elems.$form.submit();
 			}
 		}
 
@@ -154,6 +155,7 @@ var Wardrobe = {
 			$photo:             $('#js-b-wardrobe__photo'),
 			$ready:             $('#js-b-wardrobe__ready'),
 
+            $form:              $('#js-b-wardrobe__form'),
             $imgInput:          $('#js-img-input')
 		};
 
