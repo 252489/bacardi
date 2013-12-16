@@ -1,1 +1,22 @@
-result
+{% extends 'GBPBacardiBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/gbpbacardi/css/finish.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+
+
+
+    {% javascripts output='js/compiled/libs.js'
+        '@GBPBacardiBundle/Resources/public/js/libs/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts '@GBPBacardiBundle/Resources/public/js/finish/*' output='js/compiled/finish.js' debug=true %}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
