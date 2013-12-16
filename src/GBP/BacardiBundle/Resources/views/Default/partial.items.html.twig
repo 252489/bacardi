@@ -1,7 +1,7 @@
 <!-- ITEMS -->
 {% for item in items %}
     <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item" data-id="{{ item.id }}">
-        <img width="50" height="70" data-id="{{ item.id }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
+        <img width="50" data-id="{{ item.id }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
 
         <div class="b-wardrobe__popup__item_hidden js-b-wardrobe__popup__item_hidden">
             <img src="{{ item.image }}" style="z-index: {{ 40 + item.layer * 10 }}"/>
