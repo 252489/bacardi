@@ -41,7 +41,7 @@ class Item {
 	 */
 	protected $layer;
 	/**
-	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="items", cascade={"remove", "persist"})
+	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
 	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
 	 */
 	protected $category;
@@ -161,7 +161,7 @@ class Item {
      */
     public function getLayer()
     {
-        return 40 + $this->layer * 10;
+        return $this->layer;
     }
 
     /**
@@ -264,9 +264,9 @@ class Item {
 		{
 			$this->getFilePreview()->move(
 				$filepath,
-				$this->getFilePreview()->getClientOriginalName()
+				'thumb_' . $this->getFilePreview()->getClientOriginalName()
 			);
-			$this->previewImage = '/upload/items/' . $this->getFilePreview()->getClientOriginalName();
+			$this->previewImage = '/upload/items/thumb_' . $this->getFilePreview()->getClientOriginalName();
 		}
 	}
 }

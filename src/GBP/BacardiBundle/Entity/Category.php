@@ -25,6 +25,10 @@ class Category {
 	 */
 	protected $name;
 	/**
+	 * @ORM\Column(type="string", length=100)
+	 */
+	protected $namelink;
+	/**
 	 * @ORM\Column(type="boolean", nullable=true)
 	 */
 	protected $isFemale;
@@ -80,6 +84,29 @@ class Category {
     {
         return $this->name;
     }
+
+	/**
+	 * Set name
+	 *
+	 * @param string $name
+	 * @return Category
+	 */
+	public function setNamelink($namelink)
+	{
+		$this->namelink = $namelink;
+
+		return $this;
+	}
+
+	/**
+	 * Get name
+	 *
+	 * @return string
+	 */
+	public function getNamelink()
+	{
+		return $this->namelink;
+	}
 
     /**
      * Set isFemale

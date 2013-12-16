@@ -27,11 +27,21 @@ class Employee {
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 * @Assert\NotBlank()
+	 * @Assert\Regex(
+	 *      pattern="/[а-яА-Я0-9]/",
+	 *      match=false,
+	 *      message="Имя не может содержать русские символы"
+	 * )
 	 */
 	protected $name;
 	/**
 	 * @ORM\Column(type="string", length=100)
 	 * @Assert\NotBlank()
+	 * @Assert\Regex(
+	 *      pattern="/[а-яА-Я0-9]/",
+	 *      match=false,
+	 *      message="Фамилия не может содержать русские символы"
+	 * )
 	 */
 	protected $surname;
 	/**

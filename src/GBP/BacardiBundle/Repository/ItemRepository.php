@@ -21,7 +21,10 @@ class ItemRepository extends EntityRepository {
             WHERE c.isFemale = :isFemale'
 			)->setParameter('isFemale', (bool)$isFemale);
 		try {
-			return $query->getArrayResult();
+			$items = array();
+			foreach($query->getArrayResult() as $item )
+				$items[$item['category']['namelink']][] = $item;
+			return $items;
 		} catch (\Doctrine\ORM\NoResultException $e) {
 			return null;
 		}

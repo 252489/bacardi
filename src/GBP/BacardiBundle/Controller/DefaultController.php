@@ -6,6 +6,8 @@ use Doctrine\DBAL\DBALException;
 use GBP\BacardiBundle\Form\CityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use GBP\BacardiBundle\Entity\Employee;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\Validator\Validator;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -55,6 +57,8 @@ class DefaultController extends Controller
 				$em->persist($employee);
 
 				try {
+					if( mb_strtolower( $employee->getCity()->getName(), 'UTF-8' ) == 'город' )
+						throw new \Exception( "Вы не указали город" );
 					$em->flush();
 					$message = \Swift_Message::newInstance()
 						->setSubject('Добро пожаловать на вечеринку Bacardi')
@@ -77,9 +81,16 @@ class DefaultController extends Controller
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
 						$form->addError( new FormError("Такой пользователь уже существует") );
-
-					throw $e;
+				} catch (\Exception $e) {
+					$form->addError( new FormError($e->getMessage()) );
 				}
+			} else {
+				/**
+				 * @var $validator Validator
+				 */
+				$validator = $this->get('validator');
+				foreach( $validator->validate($employee) as $error )
+					$form->addError( new FormError( $error->getMessage() ) );
 			}
 		}
 		return $this->render('GBPBacardiBundle:Default:index.html.twig', array('form' => $form->createView() ));
@@ -147,8 +158,19 @@ class DefaultController extends Controller
 			->findBySexJoinedToCategory($employee->getIsFemale())
 		;
 
+		$_categories = $this->getDoctrine()
+			->getRepository('GBPBacardiBundle:Category')
+			->findAll()
+		;
+
+		$categories = array();
+		foreach($_categories as $c)
+			if( $c->getIsFemale() == $employee->getIsFemale() )
+				$categories[$c->getNamelink()] = $c;
+
 		return $this->render('GBPBacardiBundle:Default:cabinet.html.twig', array(
-			'categories' => $employee->getCategories()
+			'active_categories' => $employee->getCategories()
+			, 'categories' => $categories
 			, 'is_female' => $employee->getIsFemale()
 			, 'items' => $items
 			, 'photodata' => $employee->getPhoto()

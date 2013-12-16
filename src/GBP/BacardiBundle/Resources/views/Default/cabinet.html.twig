@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_m_page_block_bg.png?4);">
+    <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_{{ is_female ? 'f' : 'm' }}_page_block_bg.png?4);">
         <div class="b-wardrobe b-block" id="js-b-wardrobe">
             <div class="b-wardrobe__popup" id="js-b-wardrobe__popup" data-cat="">
                 <div class="b-wardrobe__popup__title" id="js-b-wardrobe__popup__title"></div>
@@ -30,41 +30,52 @@
             </div>
 
             <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="outerwear">Пиджаки / Рубашки</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="outerwear">{{ categories.outerwear.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
-                    <!-- ITEMS -->
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item">
-                        <!-- IMG HERE -->
-                    </div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
-                    <!-- /ITEMS -->
+                    {% if items.outerwear is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.outerwear}) }}
+                    {% endif %}
                 </div>
             </div>
             <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="shoes">Обувь</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="shoes">{{ categories.shoes.getName() }}</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    {% if items.shoes is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.shoes}) }}
+                    {% endif %}
+                </div>
             </div>
             <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="accessory">Акссесуары</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="accessory">{{ categories.accessory.getName() }}</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    {% if items.accessory is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.accessory}) }}
+                    {% endif %}
+                </div>
             </div>
             <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="necklace">Галустуки</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="necklace">{{ categories.necklace.getName() }}</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    {% if items.necklace is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.necklace}) }}
+                    {% endif %}
+                </div>
             </div>
             <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="pants">Брюки</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="pants">{{ categories.pants.getName() }}</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    {% if items.pants is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.pants}) }}
+                    {% endif %}
+                </div>
             </div>
             <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="headdress">Головные уборы</div>
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="headdress">{{ categories.headdress.getName() }}</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    {% if items.headdress is defined %}
+                        {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.headdress}) }}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
