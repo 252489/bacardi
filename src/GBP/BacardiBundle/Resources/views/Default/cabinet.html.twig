@@ -31,7 +31,24 @@
                     <img src="/bundles/gbpbacardi/img/photo_fon.png" style="z-index: 10">
                 </div>
 
-                <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block" data-cat="outerwear">
+                <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block">
+                    <!-- UNWEAR BLOCK -->
+                    <div class="b-wardrobe__block__unwear__wrapper">
+                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear active" data-cat="rubashka">
+                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
+                            Рубашка
+                        </div>
+                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear active" data-cat="jilet">
+                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
+                            Жилет
+                        </div>
+                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear" data-cat="piszhak">
+                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
+                            Пиджак
+                        </div>
+                    </div>
+                    <!-- /UNWEAR BLOCK -->
+
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.outerwear.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.outerwear is defined %}
@@ -39,7 +56,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block" data-cat="shoes">
+                <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block">
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.shoes.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.shoes is defined %}
@@ -47,7 +64,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block" data-cat="accessory">
+                <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block">
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.accessory.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.accessory is defined %}
@@ -55,7 +72,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block" data-cat="necklace">
+                <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block">
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.necklace.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.necklace is defined %}
@@ -63,7 +80,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block" data-cat="pants">
+                <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block">
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.pants.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.pants is defined %}
@@ -71,7 +88,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block" data-cat="headdress">
+                <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block">
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.headdress.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.headdress is defined %}

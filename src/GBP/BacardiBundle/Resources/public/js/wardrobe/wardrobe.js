@@ -3,14 +3,8 @@ var Wardrobe = {
 	vars: {
 		emptyWear: 1,
 		popupCategory: null,
-		photoSlots: {
-			headdress: null,
-			accessory: null,
-			necklace: null,
-			outerwear: null,
-			pants: null,
-			shoes: null
-		}
+		defaultPhotoSlots: {},
+		photoSlots: {}
 	},
 
 	elems: {},
@@ -28,8 +22,9 @@ var Wardrobe = {
         },
 
 		selectItem: function () {
-			var $prevImg    = Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory]
-                $newImg     = $(Wardrobe.elems.popupItemHidden, this).find('img').clone();
+			var $newImg     = $(Wardrobe.elems.popupItemHidden, this).find('img').clone(),
+				category    = $newImg.attr('data-cat'),
+				$prevImg    = Wardrobe.vars.photoSlots[category];
 
             if ($prevImg) {
                 $prevImg.replaceWith($newImg);
@@ -37,16 +32,43 @@ var Wardrobe = {
                 Wardrobe.elems.$photo.append($newImg);
             }
 
-            Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory] = $newImg;
+            Wardrobe.vars.photoSlots[category] = $newImg;
+			$(Wardrobe.elems.unwearItem +'[data-cat='+ category +']').addClass('active');
 		},
+
+		setDefaultSlots: function () {
+			var $images = $('img', Wardrobe.elems.$photo);
+
+			$images.each(function () {
+				Wardrobe.vars.photoSlots[$(this).attr('data-cat')] = $(this);
+			});
+		},
+
+
+
+		unwearItem: function () {
+			var category    = $(this).attr('data-cat'),
+				$slotImg    = Wardrobe.vars.defaultPhotoSlots[category],
+				$photoImg   = Wardrobe.elems.$photo.find('img[data-cat='+ category +']');
+
+			if ($slotImg) {
+				$photoImg.replaceWith($slotImg.clone());
+			} else {
+				$photoImg.remove();
+			}
+
+			$(this).removeClass('active');
+		},
+
+
 
 		getSortedImages: function () {
 			var k, m,
 				images          = {},
 				imagesSorted    = {},
-				$img            = $('img', Wardrobe.elems.$photo);
+				$images         = $('img', Wardrobe.elems.$photo);
 
-			$img.each(function () {
+			$images.each(function () {
 				images[$(this).css('z-index')] = $(this);
 			});
 
@@ -78,20 +100,9 @@ var Wardrobe = {
 			return canvas.toDataURL();
 		},
 
-		checkEmptyWear: function () {
-			if (!Wardrobe.vars.emptyWear) {
-				Error.methods.show('Выберите и оденьте вещи чтобы продолжить');
-				return false;
-			} else {
-				return true;
-			}
-		},
-
 		finish: function () {
-			if (this.checkEmptyWear()) {
-				Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
-                Wardrobe.elems.$form.submit();
-			}
+			Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
+            Wardrobe.elems.$form.submit();
 		}
 
 	},
@@ -101,6 +112,11 @@ var Wardrobe = {
         this.elems.$block.on('click', function (e) {
             e.stopPropagation();
             Wardrobe.methods.openBlock.bind(this)();
+        });
+
+		this.elems.$unwearItem.on('click', function (e) {
+            e.stopPropagation();
+            Wardrobe.methods.unwearItem.bind(this)();
         });
 
         this.elems.$popup.draggable({
@@ -152,6 +168,9 @@ var Wardrobe = {
 			popupItem:          '.js-b-wardrobe__popup__item',
 			popupItemHidden:    '.js-b-wardrobe__popup__item_hidden',
 
+			$unwearItem:        $('.js-b-wardrobe__block__unwear'),
+			unwearItem:         '.js-b-wardrobe__block__unwear',
+
 			$photo:             $('#js-b-wardrobe__photo'),
 			$ready:             $('#js-b-wardrobe__ready'),
 
@@ -167,6 +186,7 @@ var Wardrobe = {
 		});
 
 		this.setMethods();
+		this.methods.setDefaultSlots();
 	}
 
 };

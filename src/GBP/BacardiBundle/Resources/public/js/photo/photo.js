@@ -128,6 +128,7 @@ var Photo = {
 		},
 
 		loadImg: function (e) {
+			this.activeZoomOut();
 			var $img = loadImage(
 				e.target.files[0],
 				function (img) {

@@ -4,7 +4,7 @@
         <img width="50" data-id="{{ item.id }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
 
         <div class="b-wardrobe__popup__item_hidden js-b-wardrobe__popup__item_hidden">
-            <img src="{{ item.image }}" style="z-index: {{ 40 + item.layer * 10 }}"/>
+            <img src="{{ item.image }}" style="z-index: {{ 40 + item.layer * 10 }}" data-cat="CATEGORY"/>
         </div>
     </div>
 {% endfor %}

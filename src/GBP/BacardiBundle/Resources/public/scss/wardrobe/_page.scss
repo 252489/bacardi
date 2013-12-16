@@ -51,6 +51,55 @@
 	}
 }
 
+.b-wardrobe__block__unwear__wrapper {
+	position: absolute;
+	bottom: 5px;
+	left: 10px;
+}
+
+.b-wardrobe__block__unwear {
+	display: none;
+
+	cursor: pointer;
+	width: 144px;
+	height: 18px;
+	line-height: 18px;
+	position: relative;
+	background: #402d27;
+	padding: 0 25px 0 10px;
+	margin: 5px 5px 0 0;
+
+	white-space: nowrap;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family: NeoSans;
+	color: #a37951;
+
+	-webkit-border-radius: 6px/12px;
+	-moz-border-radius: 6px/12px;
+	-ms-border-radius: 6px/12px;
+	-o-border-radius: 6px/12px;
+	border-radius: 6px/12px;
+
+	&.active {
+		display: -moz-inline-stack;
+		display: inline-block;
+		vertical-align: top;
+		zoom: 1;
+		*display: inline;
+	}
+}
+
+.b-wardrobe__block__unwear-icon {
+	position: absolute;
+	right: 5px;
+	top: 0px;
+	font-family: Tahoma;
+	font-style: normal;
+	line-height: 15px;
+}
+
+
 .b-wardrobe__block__title {
 	width: 144px;
 	height: 18px;
