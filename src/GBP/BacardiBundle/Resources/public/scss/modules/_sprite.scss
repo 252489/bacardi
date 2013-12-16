@@ -1,0 +1,220 @@
+@mixin sprite {
+	background-image: url(../img/sprite.png);
+	background-repeat: no-repeat;
+}
+
+/* Open btn */
+
+@mixin s-open-btn {
+	@include sprite;
+
+	width: 142px;
+	height: 34px;
+	background-position: 0 0;
+}
+
+@mixin s-open-btn_hovered {
+	@include sprite;
+
+	width: 142px;
+	height: 34px;
+	background-position: -142px 0;
+}
+
+
+
+/* Ready btn */
+
+@mixin s-ready-btn {
+	@include sprite;
+
+	width: 142px;
+	height: 34px;
+	background-position: 0 -34px;
+}
+
+@mixin s-ready-btn_hovered {
+	@include sprite;
+
+	width: 142px;
+	height: 34px;
+	background-position: -142px -34px;
+}
+
+
+
+
+/* Minus Plus Resize btns */
+
+@mixin minus_plus_resize_btns {
+	@include sprite;
+
+	width: 39px;
+	height: 39px;
+}
+
+/* Plus btn */
+
+@mixin s-plus-btn {
+	@include minus_plus_resize_btns;
+
+	background-position: -284px 0;
+}
+
+@mixin s-plus-btn_hovered {
+	@include minus_plus_resize_btns;
+
+	background-position: -284px -40px;
+}
+
+/* Minus btn */
+
+@mixin s-minus-btn {
+	@include minus_plus_resize_btns;
+
+	background-position: -324px 0;
+}
+
+@mixin s-minus-btn_hovered {
+	@include minus_plus_resize_btns;
+
+	background-position: -324px -40px;
+}
+
+/* Resize btn */
+
+@mixin s-resize-btn {
+	@include minus_plus_resize_btns;
+
+	background-position: -364px 0;
+}
+
+@mixin s-resize-btn_hovered {
+	@include minus_plus_resize_btns;
+
+	background-position: -364px -40px;
+}
+
+
+
+/* Man */
+
+@mixin s-man {
+	@include sprite;
+
+	width: 80px;
+	height: 170px;
+	background-position: -13px -90px;
+}
+
+@mixin s-man_hovered {
+	@include sprite;
+
+	width: 80px;
+	height: 170px;
+	background-position: -101px -89px;
+}
+
+
+
+/* Woman */
+
+@mixin s-woman {
+	@include sprite;
+
+	width: 92px;
+	height: 188px;
+	background-position: -176px -80px;
+}
+
+@mixin s-woman_hovered {
+	@include sprite;
+
+	width: 94px;
+	height: 188px;
+	background-position: -263px -82px;
+}
+
+
+
+/* Text 'Load from PK' */
+
+@mixin s-load-from-pk {
+	@include sprite;
+
+	width: 276px;
+	height: 44px;
+	background-position: -7px -276px;
+}
+
+@mixin s-load-from-pk_hovered {
+	@include sprite;
+
+	width: 276px;
+	height: 44px;
+	background-position: -7px -323px;
+}
+
+
+
+/* Text 'Webcam' */
+
+@mixin s-webcam {
+	@include sprite;
+
+	width: 210px;
+	height: 44px;
+	background-position: -288px -276px;
+}
+
+@mixin s-webcam_hovered {
+	@include sprite;
+
+	width: 210px;
+	height: 44px;
+	background-position: -287px -323px;
+}
+
+
+
+
+/* Text 'Save' */
+
+@mixin s-save {
+	@include sprite;
+
+	width: 300px;
+	height: 40px;
+	background-position: -8px -379px;
+}
+
+@mixin s-save_hovered {
+	@include sprite;
+
+	width: 300px;
+	height: 40px;
+	background-position: -8px -420px;
+}
+
+
+
+
+
+/* Text 'Send' */
+
+@mixin s-send {
+	@include sprite;
+
+	width: 360px;
+	height: 40px;
+	background-position: -8px -472px;
+}
+
+@mixin s-send_hovered {
+	@include sprite;
+
+	width: 360px;
+	height: 44px;
+	background-position: -8px -513px;
+}
+

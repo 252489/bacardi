@@ -23,16 +23,14 @@ var EnvDetect = {
 		checkWebCamSupport: function () {
 			var browser = EnvDetect.vars.browserData.browser;
 
-			console.log(browser);
-
 			if (
-				browser.family == 'Chrome' && browser.major >= 21 ||
-				browser.family == 'Opera' && browser.major >= 12 ||
-				browser.family == 'Chrome' && browser.major >= 21
+				browser.family == 'Chrome' && browser.major >= 21   ||
+				browser.family == 'Opera' && browser.major >= 12    ||
+				browser.family == 'Firefox' && browser.major >= 24
 			) {
-
+				Webcam.init();
 			} else {
-
+				console.error('не поддерживается камера');
 			}
 		}
 

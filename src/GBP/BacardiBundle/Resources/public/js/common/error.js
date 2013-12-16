@@ -7,8 +7,6 @@ var ErrorPopup = {
 	methods: {
 
 		show: function (text) {
-			console.log(text);
-
 			ErrorPopup.elems.$popup.html(text).show();
 			ErrorPopup.elems.$popup.css({
 				marginLeft: -ErrorPopup.elems.$popup.outerWidth() / 2,
@@ -29,6 +27,7 @@ var ErrorPopup = {
 		});
 
 		$(document).on('click.closeError', function () {
+			if (!ErrorPopup.elems.$popup.is(':visible')) return;
 			ErrorPopup.methods.hide();
 		});
 

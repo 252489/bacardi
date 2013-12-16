@@ -1,0 +1,49 @@
+.b-wrapper {
+	background: url(../img/main_page_block_bg.png?4) no-repeat 50%;
+}
+
+.b-form {
+	width: 402px;
+	margin-left: -201px;
+}
+
+.b-form__field {
+	width: 398px;
+	height: 58px;
+	border: 1px solid #b79470;
+	background: #eadccf;
+	margin-bottom: 30px;
+
+	font-family: NeoSansLight;
+	font-size: 37px;
+	color: #b6a99c;
+	text-align: center;
+	text-transform: uppercase;
+
+	@include border-radius(2px);
+
+	&:first-child {
+		margin-top: 76px;
+	}
+
+	&:focus {
+		background: #f8f6f5;
+		border: 1px solid #d31f04;
+	}
+}
+
+.b-form__submit {
+	display: block;
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0 auto;
+	font-size: 0;
+	cursor: pointer;
+
+	@include s-open-btn;
+
+	&:hover {
+		@include s-open-btn_hovered;
+	}
+}

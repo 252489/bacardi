@@ -1,0 +1,39 @@
+@mixin i-column_left__menu_lessons {
+	background-position: -10px -10px;
+
+	.active & {
+		background-position: -10px -68px;
+	}
+}
+
+@mixin i-column_left__menu_teachers {
+	background-position: -64px -10px;
+
+	.active & {
+		background-position: -64px -68px;
+	}
+}
+
+@mixin i-column_left__menu_rooms {
+	background-position: -118px -10px;
+
+	.active & {
+		background-position: -118px -68px;
+	}
+}
+
+@mixin i-column_left__menu_groups {
+	background-position: -172px -10px;
+
+	.active & {
+		background-position: -172px -68px;
+	}
+}
+
+@mixin i-column_left__menu_calendar {
+	background-position: -226px -10px;
+
+	.active & {
+		background-position: -226px -68px;
+	}
+}

@@ -1,0 +1,24 @@
+.b-webcam-popup {
+	z-index: 1;
+
+	width: 370px;
+	height: 477px;
+	background: #241914;
+	background: rgba(41,30,26, 0.87);
+	overflow: hidden;
+
+	position: absolute;
+	top: -1000px;
+	left: -1000px;
+
+	&.active {
+		z-index: 100;
+		top: 114px;
+		left: 3px;
+	}
+}
+
+.b-webcam {
+	width: 630px;
+	margin-left: -130px;
+}

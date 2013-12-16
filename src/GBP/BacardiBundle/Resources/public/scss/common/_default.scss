@@ -1,0 +1,99 @@
+html{
+	height:100%;
+	min-height:100%;
+	margin-bottom:1px;
+}
+
+body{
+	height:100%;
+	position:relative;
+	margin: 0;
+	padding: 0;
+	font: 12px/18px Geneva, Arial, Tahoma, sans-serif;
+
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	outline: none;
+	//color: $link;
+
+	&:visited {
+		//color: $link_visited;
+	}
+
+	&:hover {
+		//color: $link_hovered;
+		text-decoration: none;
+	}
+
+	&:active {
+		outline: none;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+input {
+	vertical-align: middle;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+textarea {
+
+	&:focus {
+		outline: none;
+	}
+}
+
+img {
+	border: 0;
+	vertical-align: top;
+}
+
+.clear {
+	content : "";
+	line-height : 0;
+	height : 0;
+	display : block;
+	clear : both;
+	visibility : hidden;
+}
+
+
+
+
+
+.b-scroll-track {
+	position: absolute;
+}
+
+.b-scroll-track_ver {
+	width: 8px;
+}
+
+.b-scroll-track_hor {
+	height: 8px;
+}
+
+.b-scroll-bar {
+	cursor: pointer;
+	position: absolute;
+	background: #000;
+	opacity: 0.5;
+
+	@include border-radius(8px);
+}
+
+.b-scroll-bar_ver {
+	width: 8px;
+}
+
+.b-scroll-bar_hor {
+	height: 8px;
+}
