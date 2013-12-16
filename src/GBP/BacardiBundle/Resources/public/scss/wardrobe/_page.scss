@@ -120,11 +120,11 @@
 
 
 
-
+  
 .b-wardrobe__popup {
 	display: none;
-	min-width: 300px;
-	min-height: 200px;
+	width: 300px;
+	height: 250px;
 
 	background: #241914;
 	background: rgba(41,30,26, 0.77);
@@ -173,10 +173,9 @@
 }
 
 .b-wardrobe__popup__item {
-	width: 50px;
-	height: 70px;
 	cursor: pointer;
-	background: white;
+	background: rgba(255,255,255, 0.15);
+	padding: 5px;
 
 	display: -moz-inline-stack;
 	display: inline-block;
@@ -184,6 +183,8 @@
 	margin: 5px;
 	zoom: 1;
 	*display: inline;
+
+	@include border-radius(2px);
 }
 
 .b-wardrobe__popup__item_hidden {
