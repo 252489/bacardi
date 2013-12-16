@@ -134,14 +134,27 @@ var Webcam = {
 	},
 
 	init: function () {
-		this.elems = {
-			$loadBtn: $('#js-b-photo__webcam-btn')
-		};
+        var browser = EnvDetect.vars.browserData.browser;
 
-		window.webcam = this.vars.options;
+        if (
+            browser.family == 'Chrome' && browser.major >= 21   ||
+            browser.family == 'Opera' && browser.major >= 12    ||
+            browser.family == 'Firefox' && browser.major >= 24
+        ) {
 
-		this.elems.$loadBtn.show();
-		this.setMethods();
+            this.elems = {
+                $loadBtn: $('#js-b-photo__webcam-btn')
+            };
+
+            window.webcam = this.vars.options;
+
+            this.elems.$loadBtn.show();
+            this.setMethods();
+
+        } else {
+            console.error('не поддерживается камера');
+        }
+
 	}
 
 };

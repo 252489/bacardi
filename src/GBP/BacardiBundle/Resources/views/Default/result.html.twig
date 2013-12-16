@@ -8,7 +8,39 @@
 
 {% block body %}
 
+    <div class="b-wrapper" id="js-b-wrapper">
+        <div class="b-finish b-block">
 
+            <div class="b-finish__style-btn b-finish__style-btn_sepia js-b-finish__style-btn" data-effect="sepia"></div>
+            <div class="b-finish__style-btn b-finish__style-btn_desaturate js-b-finish__style-btn" data-effect="desaturate"></div>
+
+            <div class="b-finish__save" id="js-b-finish__save"></div>
+            <div class="b-finish__send" id="js-b-finish__send"></div>
+
+            <div class="b-finish__frames">
+                <div class="b-finish__frame__wrapper b-finish__frame__wrapper_1" title="frame 1">
+                    <div class="b-finish__frame b-finish__frame_1 js-b-finish__frame" data-frame="1"></div>
+                </div>
+
+                <div class="b-finish__frame__wrapper b-finish__frame__wrapper_2" title="frame 2">
+                    <div class="b-finish__frame b-finish__frame_2 js-b-finish__frame" data-frame="2"></div>
+                </div>
+
+                <div class="b-finish__frame__wrapper b-finish__frame__wrapper_3" title="frame 3">
+                    <div class="b-finish__frame b-finish__frame_3 js-b-finish__frame" data-frame="3"></div>
+                </div>
+            </div>
+
+            <div class="b-finish__result">
+                <div class="b-finish__result__loader" id="js-b-finish__result__loader"></div>
+                <div class="b-finish__result__frame" id="js-b-finish__result__frame"></div>
+                <div class="b-finish__result__photo" id="js-b-finish__result__photo">
+                    <img class="b-finish__result__photo__img" id="js-b-finish__result__photo__img" src="{{ result }}">
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     {% javascripts output='js/compiled/libs.js'
         '@GBPBacardiBundle/Resources/public/js/libs/*'

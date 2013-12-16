@@ -18,20 +18,6 @@ var EnvDetect = {
 			}
 
 			$('html').addClass(htmlClass);
-		},
-
-		checkWebCamSupport: function () {
-			var browser = EnvDetect.vars.browserData.browser;
-
-			if (
-				browser.family == 'Chrome' && browser.major >= 21   ||
-				browser.family == 'Opera' && browser.major >= 12    ||
-				browser.family == 'Firefox' && browser.major >= 24
-			) {
-				Webcam.init();
-			} else {
-				console.error('не поддерживается камера');
-			}
 		}
 
 	},
@@ -40,7 +26,6 @@ var EnvDetect = {
 
         EnvDetect.vars.browserData = detect.parse(navigator.userAgent);
 	    EnvDetect.methods.setBrowserVersionToHtml();
-	    EnvDetect.methods.checkWebCamSupport();
 
     }
 
