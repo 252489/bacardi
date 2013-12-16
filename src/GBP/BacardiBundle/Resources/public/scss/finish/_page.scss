@@ -156,6 +156,10 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+
+	&.active {
+		display: none;
+	}
 }
 
 .b-finish__result__photo {
