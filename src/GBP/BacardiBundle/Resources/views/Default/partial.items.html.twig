@@ -2,7 +2,7 @@
 {% for item in items %}
     <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item" data-id="{{ item.id }}">
         <!-- IMG HERE -->
-        <img width="50" height="70" data-id="{{ item.id }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
+        <img width="50" height="70" data-id="{{ item.id }}" data-big-src="{{ item.image }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
     </div>
 {% endfor %}
 <!-- /ITEMS -->
