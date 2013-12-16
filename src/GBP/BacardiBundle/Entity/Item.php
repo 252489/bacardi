@@ -161,7 +161,7 @@ class Item {
      */
     public function getLayer()
     {
-        return $this->layer;
+        return 40 + $this->layer * 10;
     }
 
     /**
@@ -258,7 +258,7 @@ class Item {
 				$filepath,
 				$this->getFile()->getClientOriginalName()
 			);
-			$this->image = $this->getFile()->getClientOriginalName();
+			$this->image = '/upload/items/' . $this->getFile()->getClientOriginalName();
 		}
 		if( null !== $this->getFilePreview() )
 		{
@@ -266,7 +266,7 @@ class Item {
 				$filepath,
 				$this->getFilePreview()->getClientOriginalName()
 			);
-			$this->previewImage = $this->getFilePreview()->getClientOriginalName();
+			$this->previewImage = '/upload/items/' . $this->getFilePreview()->getClientOriginalName();
 		}
 	}
 }

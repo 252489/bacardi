@@ -46,10 +46,12 @@ class EmployeeAdmin extends Admin {
 	protected function configureListFields(ListMapper $listMapper)
 	{
 		$listMapper
-			->addIdentifier('email')
-			->add('name')
-			->add('surname')
-			->add('city')
+			->addIdentifier('email', 'text', array('label' => 'Em@il'))
+			->add('name', 'text', array('label' => 'Имя'))
+			->add('surname', 'text', array('label' => 'Фамилия'))
+			->add('city', 'string', array('label' => 'Город'))
+			->add('photo', 'string', array('label' => 'Фото', 'template' => 'GBPBacardiBundle:Admin:list_photo.html.twig'))
+			->add('resultPhoto', 'string', array('label' => 'Лук', 'template' => 'GBPBacardiBundle:Admin:list_result_photo.html.twig'))
 		;
 	}
 } 

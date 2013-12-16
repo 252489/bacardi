@@ -14,9 +14,17 @@ class DefaultController extends Controller
 	public function indexAction()
 	{
 		if( $this->get('session')->get('user') )
-			return $this->redirect( $this->generateUrl('gbp_bacardi_get_employee', array(
-				'email' => $this->get('session')->get('user')->getEmail(), 'hash' => $this->get('session')->get('user')->getHash()
-			), UrlGeneratorInterface::ABSOLUTE_URL ) );
+		{
+			$employee = $this->getDoctrine()
+				->getRepository('GBPBacardiBundle:Employee')
+				->findOneBy(array('hash' => $this->get('session')->get('user')->getHash(), 'email' => $this->get('session')->get('user')->getEmail()));
+			if( $employee )
+				return $this->redirect( $this->generateUrl('gbp_bacardi_get_employee', array(
+					'email' => $employee->getEmail(), 'hash' => $employee->getHash()
+				), UrlGeneratorInterface::ABSOLUTE_URL ) );
+			else
+				$this->get('session')->set('user', null);
+		}
 
 		$employee = new Employee();
 		$employee
@@ -69,6 +77,8 @@ class DefaultController extends Controller
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
 						$form->addError( new FormError("Такой пользователь уже существует") );
+
+					throw $e;
 				}
 			}
 		}
@@ -105,6 +115,11 @@ class DefaultController extends Controller
 			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
 		}
 		return $this->render('GBPBacardiBundle:Default:photo.html.twig', array('name' => 'some name'));
+	}
+
+	public function getimageAction($id)
+	{
+
 	}
 
 	public function cabinetAction()

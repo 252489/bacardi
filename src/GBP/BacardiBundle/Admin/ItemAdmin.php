@@ -41,6 +41,7 @@ class ItemAdmin extends Admin {
 		$listMapper
 			->addIdentifier('name')
 			->add('category')
+			->add('image', 'string', array('label' => 'Фото', 'template' => 'GBPBacardiBundle:Admin:list_image.html.twig'))
 		;
 	}
 }

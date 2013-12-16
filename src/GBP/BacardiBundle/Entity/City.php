@@ -8,6 +8,7 @@
 
 namespace GBP\BacardiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use GBP\BacardiBundle;
 
 /**
  * @ORM\Entity
@@ -53,7 +54,7 @@ class City {
      */
     public function setName($name)
     {
-        $this->name = ucfirst($name);
+        $this->name = BacardiBundle\mb_ucfirst($name);
     
         return $this;
     }

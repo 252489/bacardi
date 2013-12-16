@@ -1,0 +1,12 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {% if( object.image ) %}
+        <img class="photo" width="100" height="133" src="{{ object.image }}" alt=""/>
+    {% endif %}
+
+    {% if( object.previewImage ) %}
+        <img class="photo" width="100" height="133" src="{{ object.previewImage }}" alt=""/>
+    {% endif %}
+
+{% endblock %}

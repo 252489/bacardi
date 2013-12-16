@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
+use GBP\BacardiBundle;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="employee")
@@ -65,9 +67,14 @@ class Employee {
 	 */
 	protected $hash;
 	/**
-	 * @ORM\Column(type="blob")
+	 * @ORM\Column(type="text", nullable=true)
 	 */
 	protected $photo;
+	/**
+	 * @ORM\Column(type="text", nullable=true)
+	 */
+	protected $resultPhoto;
+
 	/**
 	 * Constructor
 	 */
@@ -96,7 +103,7 @@ class Employee {
      */
     public function setName($name)
     {
-        $this->name = ucfirst($name);
+        $this->name = BacardiBundle\mb_ucfirst($name);
     
         return $this;
     }
@@ -119,7 +126,7 @@ class Employee {
      */
     public function setSurname($surname)
     {
-        $this->surname = ucfirst($surname);
+        $this->surname = BacardiBundle\mb_ucfirst($surname);
     
         return $this;
     }
@@ -167,6 +174,28 @@ class Employee {
 	public function setPhoto($photo)
 	{
 		$this->photo = $photo;
+		return $this;
+	}
+
+	/**
+	 * Get photo
+	 *
+	 * @return string
+	 */
+	public function getResultPhoto()
+	{
+		return $this->resultPhoto;
+	}
+
+	/**
+	 * Set photo
+	 *
+	 * @param string $photo
+	 * @return Employee
+	 */
+	public function setResultPhoto($photo)
+	{
+		$this->resultPhoto = $photo;
 		return $this;
 	}
 
