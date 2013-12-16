@@ -1,6 +1,6 @@
 {% extends 'GBPBacardiBundle::layout.html.twig' %}
 {% block stylesheets %}
-    {% stylesheets 'bundles/gbpbacardi/scss/main.scss' filters='compass' %}
+    {% stylesheets 'bundles/gbpbacardi/css/main.css' filters='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
