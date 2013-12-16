@@ -62,7 +62,7 @@ class DefaultController extends Controller
 					$em->flush();
 					$message = \Swift_Message::newInstance()
 						->setSubject('Добро пожаловать на вечеринку Bacardi')
-						->setFrom('info@bacardigetaway.com')
+						->setFrom( $this->container->getParameter('mailer_user') )
 						->setTo($employee->getEmail())
 						->setBody(
 							$this->renderView(
