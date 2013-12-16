@@ -10,6 +10,11 @@ gbp_bacardi_cabinet:
     pattern: /cabinet
     defaults: { _controller: GBPBacardiBundle:Default:cabinet}
 
+gbp_bacardi_image_options:
+    pattern: /result
+    defaults: { _controller: GBPBacardiBundle:Default:result}
+
+
 gbp_bacardi_set_item:
     pattern: /cabinet/{id}
     defaults: { _controller: GBPBacardiBundle:Default:setitem, _format:json}

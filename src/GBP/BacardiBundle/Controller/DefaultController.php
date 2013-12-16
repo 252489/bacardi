@@ -168,13 +168,30 @@ class DefaultController extends Controller
 			if( $c->getIsFemale() == $employee->getIsFemale() )
 				$categories[$c->getNamelink()] = $c;
 
+		$form = $this->createFormBuilder($employee)
+			->add('resultPhoto', 'hidden')
+			->getForm();
+
+		if( $this->get('request')->getMethod() == 'POST' )
+		{
+			$form->handleRequest($this->get('request'));
+			if( $form->isValid() )
+			{
+				$employee->setResultphoto( $employee->getResultphoto() );
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($employee);
+				$em->flush();
+
+				return $this->redirect( $this->generateUrl('gbp_bacardi_image_options') );
+			}
+		}
 		return $this->render('GBPBacardiBundle:Default:cabinet.html.twig', array(
 			'active_categories' => $employee->getCategories()
 			, 'categories' => $categories
 			, 'is_female' => $employee->getIsFemale()
 			, 'items' => $items
 			, 'photodata' => $employee->getPhoto()
-
+			, 'form' => $form->createView()
 		));
 	}
 
@@ -204,5 +221,11 @@ class DefaultController extends Controller
 		$em->flush();
 
 		return $this->render( 'GBPBacardiBundle:Default:setitem.json.twig', array('data' => array('success' => true)) );
+	}
+
+	public function resultAction()
+	{
+
+		return $this->render( 'GBPBacardiBundle:Default:result.html.twig' );
 	}
 }

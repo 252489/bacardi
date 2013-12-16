@@ -9,9 +9,8 @@
 {% block body %}
     <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_{{ is_female ? 'f' : 'm' }}_page_block_bg.png?4);">
         <div class="b-wardrobe b-block" id="js-b-wardrobe">
-            <form action="<!-- ACTION -->" id="js-b-wardrobe__form">
-                <input id="js-img-input" type="hidden" value=""/>
-
+            {{ form_start(form, {'attr': {'id': 'js-b-wardrobe__form'}}) }}
+                {{ form_widget(form.resultPhoto, {'id': 'js-img-input'}) }}
                 <div class="b-wardrobe__popup" id="js-b-wardrobe__popup">
                     <div class="b-wardrobe__popup__title" id="js-b-wardrobe__popup__title"></div>
                     <div class="b-wardrobe__popup__container__wrapper" id="js-b-wardrobe__popup__container__wrapper">
@@ -80,7 +79,7 @@
                         {% endif %}
                     </div>
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 
