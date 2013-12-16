@@ -186,6 +186,10 @@
 	*display: inline;
 }
 
+.b-wardrobe__popup__item_hidden {
+	display: none;
+}
+
 .b-wardrobe__popup__track {
 	width: 6px;
 	position: absolute;

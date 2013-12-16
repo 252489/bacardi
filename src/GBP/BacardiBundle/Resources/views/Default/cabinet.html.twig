@@ -9,7 +9,7 @@
 {% block body %}
     <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_{{ is_female ? 'f' : 'm' }}_page_block_bg.png?4);">
         <div class="b-wardrobe b-block" id="js-b-wardrobe">
-            <div class="b-wardrobe__popup" id="js-b-wardrobe__popup" data-cat="">
+            <div class="b-wardrobe__popup" id="js-b-wardrobe__popup">
                 <div class="b-wardrobe__popup__title" id="js-b-wardrobe__popup__title"></div>
                 <div class="b-wardrobe__popup__container__wrapper" id="js-b-wardrobe__popup__container__wrapper">
                     <div class="b-wardrobe__popup__container" id="js-b-wardrobe__popup__container">
@@ -29,48 +29,48 @@
                 <img src="/bundles/gbpbacardi/img/photo_fon.png" style="z-index: 10">
             </div>
 
-            <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="outerwear">{{ categories.outerwear.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block" data-cat="outerwear">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.outerwear.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.outerwear is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.outerwear}) }}
                     {% endif %}
                 </div>
             </div>
-            <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="shoes">{{ categories.shoes.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block" data-cat="shoes">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.shoes.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.shoes is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.shoes}) }}
                     {% endif %}
                 </div>
             </div>
-            <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="accessory">{{ categories.accessory.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block" data-cat="accessory">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.accessory.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.accessory is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.accessory}) }}
                     {% endif %}
                 </div>
             </div>
-            <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="necklace">{{ categories.necklace.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block" data-cat="necklace">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.necklace.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.necklace is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.necklace}) }}
                     {% endif %}
                 </div>
             </div>
-            <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="pants">{{ categories.pants.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block" data-cat="pants">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.pants.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.pants is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.pants}) }}
                     {% endif %}
                 </div>
             </div>
-            <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block">
-                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="headdress">{{ categories.headdress.getName() }}</div>
+            <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block" data-cat="headdress">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.headdress.getName() }}</div>
                 <div class="b-wardrobe__items js-b-wardrobe__items">
                     {% if items.headdress is defined %}
                         {{ include('GBPBacardiBundle:Default:partial.items.html.twig', {'items' : items.headdress}) }}

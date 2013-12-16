@@ -28,16 +28,16 @@ var Wardrobe = {
         },
 
 		selectItem: function () {
-			var $photoSlot  = Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory],
-				$img        = $('img', this);
+			var $prevImg    = Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory]
+                $newImg     = $(Wardrobe.elems.popupItemHidden, this).find('img').clone();
 
-			if ($photoSlot) {
-				$photoSlot.replaceWith($img);
-			} else {
-				Wardrobe.elems.$photo.append($img);
-			}
+            if ($prevImg) {
+                $prevImg.replaceWith($newImg);
+            } else {
+                Wardrobe.elems.$photo.append($newImg);
+            }
 
-			Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory] = $img;
+            Wardrobe.vars.photoSlots[Wardrobe.vars.popupCategory] = $newImg;
 		},
 
 		getSortedImages: function () {
@@ -56,7 +56,7 @@ var Wardrobe = {
 			keys.sort();
 
 			for (k = 0; k < len; k++) {
-				var m = keys[k];
+				m = keys[k];
 				imagesSorted[m] = images[m];
 			}
 
@@ -123,7 +123,7 @@ var Wardrobe = {
 			}
 		});
 
-		this.elems.$popup.on('click', Wardrobe.elems.popupItem, function (e) {
+		this.elems.$popup.on('click', Wardrobe.elems.popupItem, function () {
 			Wardrobe.methods.selectItem.bind(this)();
 		});
 
@@ -152,6 +152,7 @@ var Wardrobe = {
 			$popupBar:          $('#js-b-wardrobe__popup__bar'),
             $popupContainer:    $('#js-b-wardrobe__popup__container'),
 			popupItem:          '.js-b-wardrobe__popup__item',
+			popupItemHidden:    '.js-b-wardrobe__popup__item_hidden',
 
 			$photo:             $('#js-b-wardrobe__photo'),
 			$ready:             $('#js-b-wardrobe__ready')
