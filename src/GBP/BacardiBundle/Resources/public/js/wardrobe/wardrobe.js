@@ -89,10 +89,7 @@ var Wardrobe = {
 
 		finish: function () {
 			if (this.checkEmptyWear()) {
-				var photoUrl = this.getPhotoUrl();
-
-				alert(photoUrl);
-				// TODO тут получаем урл конечной картинки
+				Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
 			}
 		}
 
@@ -155,7 +152,9 @@ var Wardrobe = {
 			popupItemHidden:    '.js-b-wardrobe__popup__item_hidden',
 
 			$photo:             $('#js-b-wardrobe__photo'),
-			$ready:             $('#js-b-wardrobe__ready')
+			$ready:             $('#js-b-wardrobe__ready'),
+
+            $imgInput:          $('#js-img-input')
 		};
 
 		this.vars.scroller = new Scroller({
