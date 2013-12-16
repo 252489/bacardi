@@ -11,9 +11,15 @@
 	{% block stylesheets %}{% endblock %}
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    {% javascripts '@GBPBacardiBundle/Resources/public/js/common/*' '@GBPBacardiBundle/Resources/public/js/*' output='js/compiled/main.js' %}
+
+    {% javascripts output='js/compiled/common.js'
+        '@GBPBacardiBundle/Resources/public/js/common/*'
+    %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    {% block javascripts %}
+    {% endblock %}
 
 	{% block head %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -21,9 +27,7 @@
 </head>
 <body>
 {% block body %}
+
 {% endblock %}
-
-{% block javascripts %}{% endblock %}
-
 </body>
 </html>

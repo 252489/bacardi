@@ -18,6 +18,11 @@
         </div>
     </div>
     <div class="b-error-popup" id="js-b-error-popup"></div>
+
+    {% javascripts '@GBPBacardiBundle/Resources/public/js/main/*' output='js/compiled/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     <script type="text/javascript">
         $(function(){
             var text = '{{ form_errors(form) }}' || "";

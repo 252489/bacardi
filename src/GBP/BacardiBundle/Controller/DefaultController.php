@@ -58,7 +58,7 @@ class DefaultController extends Controller
 					$em->flush();
 					$message = \Swift_Message::newInstance()
 						->setSubject('Добро пожаловать на вечеринку Bacardi')
-						->setFrom('info@bacardi.com')
+						->setFrom('info@bacardigetaway.com')
 						->setTo($employee->getEmail())
 						->setBody(
 							$this->renderView(
@@ -97,24 +97,37 @@ class DefaultController extends Controller
 		if( $employee )
 		{
 			$this->get('session')->set('user', $employee);
+
+			$form = $this->createFormBuilder($employee)
+				->add('isFemale', 'hidden')
+				->add('photo', 'hidden')
+				->add('save', 'submit')
+				->getForm();
+
 			if( $employee->getPhoto() ) return $this->redirect( $this->generateUrl('gbp_bacardi_cabinet') );
-			elseif( $this->get('request')->getMethod() == 'POST' && $this->get('request')->get('photo') && $this->get('request')->get('sex') ) {
-				$employee
-					->setIsFemale( $this->get('request')->get('sex') == 'woman' )
-					->setPhoto( $this->get('request')->get('photo') );
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($employee);
-				$em->flush();
-				return $this->redirect( $this->generateUrl('gbp_bacardi_cabinet') );
+			elseif( $this->get('request')->getMethod() == 'POST' ) {
+
+				$form->handleRequest($this->get('request'));
+				if( $form->isValid() )
+				{
+					$employee
+						->setIsFemale( $employee->getIsFemale() )
+						->setPhoto( $employee->getPhoto() );
+					$em = $this->getDoctrine()->getManager();
+					$em->persist($employee);
+					$em->flush();
+					return $this->redirect( $this->generateUrl('gbp_bacardi_cabinet') );
+				}
 			}
 		} else {
+			$this->get('session')->set('user', null);
 			$this->get('session')->getFlashBag()->add(
 				'error',
 				'Такого пользователя не существует или ошибка в адресе'
 			);
 			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
 		}
-		return $this->render('GBPBacardiBundle:Default:photo.html.twig', array('name' => 'some name'));
+		return $this->render('GBPBacardiBundle:Default:photo.html.twig', array('form' => $form->createView()));
 	}
 
 	public function getimageAction($id)
@@ -138,6 +151,7 @@ class DefaultController extends Controller
 			'categories' => $employee->getCategories()
 			, 'is_female' => $employee->getIsFemale()
 			, 'items' => $items
+			, 'photodata' => $employee->getPhoto()
 
 		));
 	}

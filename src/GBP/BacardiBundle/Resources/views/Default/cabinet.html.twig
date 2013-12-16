@@ -1,5 +1,82 @@
 {% extends 'GBPBacardiBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/gbpbacardi/css/wardrobe.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
+    <div class="b-wrapper" id="js-b-wrapper" style="background-image: url(/bundles/gbpbacardi/img/wardrobe_m_page_block_bg.png?4);">
+        <div class="b-wardrobe b-block" id="js-b-wardrobe">
+            <div class="b-wardrobe__popup" id="js-b-wardrobe__popup" data-cat="">
+                <div class="b-wardrobe__popup__title" id="js-b-wardrobe__popup__title"></div>
+                <div class="b-wardrobe__popup__container__wrapper" id="js-b-wardrobe__popup__container__wrapper">
+                    <div class="b-wardrobe__popup__container" id="js-b-wardrobe__popup__container">
+                        <!-- ITEMS -->
+                    </div>
+                </div>
+                <div class="b-wardrobe__popup__track" id="js-b-wardrobe__popup__track">
+                    <div class="b-wardrobe__popup__bar" id="js-b-wardrobe__popup__bar"></div>
+                </div>
+            </div>
+
+            <div class="b-wardrobe__ready" id="js-b-wardrobe__ready"></div>
+
+            <div class="b-wardrobe__photo" id="js-b-wardrobe__photo">
+                <img src="{{ photodata }}" style="display: block;width: 60px;z-index: 20;top: 64px;left: 111px;">
+                <img src="/bundles/gbpbacardi/img/man_mask.png" style="z-index: 30">
+                <img src="/bundles/gbpbacardi/img/photo_fon.png" style="z-index: 10">
+            </div>
+
+            <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="outerwear">Пиджаки / Рубашки</div>
+                <div class="b-wardrobe__items js-b-wardrobe__items">
+                    <!-- ITEMS -->
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item">
+                        <!-- IMG HERE -->
+                    </div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item"></div>
+                    <!-- /ITEMS -->
+                </div>
+            </div>
+            <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="shoes">Обувь</div>
+            </div>
+            <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="accessory">Акссесуары</div>
+            </div>
+            <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="necklace">Галустуки</div>
+            </div>
+            <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="pants">Брюки</div>
+            </div>
+            <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block">
+                <div class="b-wardrobe__block__title js-b-wardrobe__block__title" data-cat="headdress">Головные уборы</div>
+            </div>
+        </div>
+    </div>
+
+    {% javascripts output='js/compiled/libs.js'
+        '@GBPBacardiBundle/Resources/public/js/libs/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts '@GBPBacardiBundle/Resources/public/js/wardrobe/*' output='js/compiled/wardrobe.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
 {% endblock %}

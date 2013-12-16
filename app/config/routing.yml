@@ -1,6 +1,6 @@
 gbp_bacardi:
     resource: "@GBPBacardiBundle/Resources/config/routing.yml"
-    prefix:   /bacardi
+    prefix:   /
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'

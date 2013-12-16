@@ -1,33 +1,40 @@
 {% extends 'GBPBacardiBundle::layout.html.twig' %}
+
 {% block stylesheets %}
     {% stylesheets 'bundles/gbpbacardi/css/photo.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
-    <div class="b-wrapper">
+    <div class="b-wrapper" id="js-b-wrapper">
         <div class="b-photo b-block" id="js-b-photo">
             <div class="b-error-popup" id="js-b-error-popup"></div>
 
-            <form action="?">
-                <input id="js-sex-input" type="hidden" value="" />
-                <input id="js-img-input" type="hidden" value="" />
+            {{ form_start(form, {'attr': {'id': 'js-b-photo__form'}}) }}
+            {{ form_widget(form.isFemale, {'id': 'js-sex-input'}) }}
+            {{ form_widget(form.photo, {'id': 'js-img-input'}) }}
 
                 <div class="b-photo__sex">
-                    <div class="b-photo__sex__man js-b-photo__sex active" data-sex="man"></div>
-                    <div class="b-photo__sex__woman js-b-photo__sex" data-sex="woman"></div>
+                    <div class="b-photo__sex__man js-b-photo__sex" data-sex="0"></div>
+                    <div class="b-photo__sex__woman js-b-photo__sex" data-sex="1"></div>
                 </div>
 
                 <label class="b-photo__load" id="js-b-photo__load">
-                    <input class="b-photo__load__input" type="file"/>
+                    <input class="input_hidden" type="file"/>
                 </label>
+
                 <div class="b-photo__webcam-btn" id="js-b-photo__webcam-btn"></div>
-                <div class="b-photo__ready-btn" id="js-b-photo__ready-btn"></div>
+                <label class="b-photo__ready-btn" id="js-b-photo__ready-btn">
+                    {{ form_widget(form.save, {'attr': {'class': 'input_hidden'}}) }}
+                </label>
+
                 <div class="b-photo__crop-btn" id="js-b-photo__crop-btn"></div>
 
-                <div class="b-photo__img__zoom b-photo__img__zoom_in js-b-photo__img__zoom" id="js-b-photo__img__zoom_in"></div>
-                <div class="b-photo__img__zoom b-photo__img__zoom_out js-b-photo__img__zoom" id="js-b-photo__img__zoom_out"></div>
+                <div class="b-photo__img__zoom b-photo__img__zoom_in js-b-photo__img__zoom"
+                     id="js-b-photo__img__zoom_in"></div>
+                <div class="b-photo__img__zoom b-photo__img__zoom_out js-b-photo__img__zoom"
+                     id="js-b-photo__img__zoom_out"></div>
                 <!--div class="b-photo__img__resize"></div-->
 
                 <div class="b-photo__img__wrapper" id="js-b-photo__img__wrapper">
@@ -39,7 +46,20 @@
                     <div class="b-output" id="js-b-output"></div>
                     <div class="b-crop__result" id="js-b-crop__result"></div>
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
+
+    {% javascripts output='js/compiled/libs.js'
+        '@GBPBacardiBundle/Resources/public/js/libs/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts output='js/compiled/photo.js'
+        '@GBPBacardiBundle/Resources/public/js/photo/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
 {% endblock %}
