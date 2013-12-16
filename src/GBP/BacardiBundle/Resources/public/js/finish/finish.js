@@ -1,49 +1,61 @@
 var Finish = {
 
-	vars: {},
-
-	elems: {},
-
-	methods: {
-
-        setSepiaEffect: function () {
-
-        },
-
-        RGBtoGRAYSCALE: function (r, g, b) {
-            return window.parseInt((0.2125 * r) + (0.7154 * g) + (0.0721 * b), 10);
-        },
-
-        setDesaturateEffect: function () {
-            var imgData = ctx.getImageData(0, 0, dimension, dimension);
-
-            for (y = 0; y < dimension; y++) {
-                for (x = 0; x < dimension; x++) {
-                    i = (y * dimension + x) * 4;
-
-                    // Apply Monochrome level across all channels:
-                    imgData.data[i] = imgData.data[i + 1] = imgData.data[i + 2] = RGBtoGRAYSCALE(imgData.data[i], imgData.data[i + 1], imgData.data[i + 2]);
-                }
+    vars: {
+        effectsOptions: {
+            'desaturate': {
+                vignette: 1,
+                desaturate: true
+            },
+            'sepia': {
+                vignette: 0.6,
+                sepia: true
             }
+        }
+    },
 
-            return imgData;
+    elems: {},
+
+    methods: {
+
+        changeEffect: function () {
+            Finish.elems.$resultLoader.show();
+            Finish.elems.$effectBtn.removeClass('active');
+            $(this).addClass('active');
+
+            var effect = Finish.vars.effectsOptions[$(this).attr('data-effect')];
+            new VintageJS(
+                Finish.elems.$resultPhotoImg[0],
+                {
+                    onStop: function () {
+                        Finish.elems.$resultLoader.hide();
+                    }
+                },
+                effect
+            );
         }
 
-	},
+    },
 
-	setMethods: function () {
+    setMethods: function () {
 
+        this.elems.$effectBtn.on('click', function () {
+            if ($(this).hasClass('active')) return;
+            Finish.methods.changeEffect.bind(this)();
+        });
 
+    },
 
-	},
+    init: function () {
+        this.elems = {
+            $effectBtn:         $('.js-b-finish__style-btn'),
 
-	init: function () {
-		this.elems = {
-            $resultFrame: $('#js-b-finish__result__frame'),
-            $resultPhoto: $('#js-b-finish__result__photo')
-		};
+            $resultFrame:       $('#js-b-finish__result__frame'),
+            $resultPhoto:       $('#js-b-finish__result__photo'),
+            $resultPhotoImg:    $('#js-b-finish__result__photo__img'),
+            $resultLoader:      $('#js-b-finish__result__loader')
+        };
 
-		this.setMethods();
-	}
+        this.setMethods();
+    }
 
 };
