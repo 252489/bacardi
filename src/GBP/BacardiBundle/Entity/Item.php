@@ -37,10 +37,6 @@ class Item {
 	 */
 	protected $previewImage;
 	/**
-	 * @ORM\Column(type="smallint")
-	 */
-	protected $layer;
-	/**
 	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
 	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
 	 */
@@ -145,30 +141,6 @@ class Item {
     {
         return $this->previewImage;
     }
-
-    /**
-     * Set layer
-     *
-     * @param integer $layer
-     * @return Item
-     */
-    public function setLayer($layer)
-    {
-        $this->layer = $layer;
-    
-        return $this;
-    }
-
-    /**
-     * Get layer
-     *
-     * @return integer 
-     */
-    public function getLayer()
-    {
-        return $this->layer;
-    }
-
     /**
      * Set category
      *

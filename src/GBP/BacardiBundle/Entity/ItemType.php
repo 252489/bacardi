@@ -22,13 +22,17 @@ class ItemType {
 	 */
 	protected $id;
 	/**
-	 * @ORM\Column(type="string", length=100)
+	 * @ORM\Column(type="string", length=100, unique=true)
 	 */
 	protected $name;
 	/**
 	 * @ORM\OneToMany(targetEntity="Item", mappedBy="itemtype")
 	 */
 	protected $items;
+	/**
+	 * @ORM\Column(type="smallint")
+	 */
+	protected $layer;
     /**
      * Constructor
      */
@@ -36,6 +40,11 @@ class ItemType {
     {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 
     /**
      * Get id
@@ -101,5 +110,28 @@ class ItemType {
     public function getItems()
     {
         return $this->items;
+    }
+
+    /**
+     * Set layer
+     *
+     * @param integer $layer
+     * @return ItemType
+     */
+    public function setLayer($layer)
+    {
+        $this->layer = $layer;
+
+        return $this;
+    }
+
+    /**
+     * Get layer
+     *
+     * @return integer 
+     */
+    public function getLayer()
+    {
+        return $this->layer;
     }
 }
