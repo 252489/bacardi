@@ -1,6 +1,7 @@
 var Wardrobe = {
 
 	vars: {
+        openedBlock: null,
 		emptyWear: 1,
 		popupCategory: null,
 		defaultPhotoSlots: {},
@@ -12,6 +13,7 @@ var Wardrobe = {
 	methods: {
 
         openBlock: function () {
+            Wardrobe.vars.openedBlock = $(this);
 	        Wardrobe.vars.popupCategory = $(this).attr('data-cat');
 
             Wardrobe.elems.$popupTitle.html($(Wardrobe.elems.blockTitle, this).html());
@@ -33,7 +35,8 @@ var Wardrobe = {
             }
 
             Wardrobe.vars.photoSlots[category] = $newImg;
-			$(Wardrobe.elems.unwearItem +'[data-cat='+ category +']').addClass('active');
+            $(Wardrobe.elems.unwearItem +'[data-cat='+ category +']').removeClass('active');
+			$(Wardrobe.elems.unwearItem +'[data-cat='+ category +']', Wardrobe.vars.openedBlock).addClass('active');
 		},
 
 		setDefaultSlots: function () {
