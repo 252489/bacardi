@@ -6,6 +6,7 @@ use Doctrine\DBAL\DBALException;
 use GBP\BacardiBundle\Form\CityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use GBP\BacardiBundle\Entity\Employee;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Validator\Validator;
 use Symfony\Component\Form\FormError;
@@ -249,7 +250,52 @@ class DefaultController extends Controller
 			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
 		}
 
+		$form = $this->createFormBuilder($employee)
+			->add('resultPhoto', 'hidden')
+			->add('__type', 'hidden', array("mapped" => false))
+			->getForm();
 
-		return $this->render( 'GBPBacardiBundle:Default:result.html.twig', array('result' => $employee->getResultphoto() ) );
+		$r_photo = $employee->getResultphoto();
+		if( $this->get('request')->getMethod() == 'POST' )
+		{
+
+			$form->handleRequest($this->get('request'));
+			if( $form->isValid() )
+			{
+				$photo = str_replace('data:image/png;base64,', '', $employee->getResultphoto());
+				$img_data = base64_decode($photo);
+				$filename = realpath( dirname(__FILE__) . '/../../../../web/upload/' ) . '/' . $employee->getEmail() . '.png';
+				file_put_contents( $filename, $img_data );
+
+				// 0 - send to email, 1 - save to disk
+				if( $form['__type']->getData() == 0 )
+				{
+					$message = \Swift_Message::newInstance();
+					$message->setSubject('Спасибо за примерку Bacardi')
+						->setFrom( $this->container->getParameter('mailer_user') )
+						->setTo($employee->getEmail())
+						->attach( \Swift_Attachment::fromPath($filename) )
+						->setBody(
+							'<html>' .
+							' <head></head>' .
+							' <body>' .
+							'  Ваша фотография в стиле 20-х годов сделана. '.
+							' </body>' .
+							'</html>',
+							'text/html'
+						)
+					;
+					$this->get('mailer')->send($message);
+				} else {
+					return new Response($img_data, 200, array(
+						'Content-Type' => 'image/png',
+						'Content-Disposition' => 'attachment; filename="'.$employee->getEmail().'.png"'
+					));
+				}
+			}
+		}
+
+
+		return $this->render( 'GBPBacardiBundle:Default:result.html.twig', array('result' => $r_photo, 'form' => $form->createView() ) );
 	}
 }

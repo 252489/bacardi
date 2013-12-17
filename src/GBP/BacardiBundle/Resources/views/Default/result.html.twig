@@ -10,9 +10,9 @@
 
     <div class="b-wrapper" id="js-b-wrapper">
         <div class="b-finish b-block">
-            <form action="" id="js-b-finish__form">
-                <input id="js-img-input" type="hidden" value=""/>
-                <input id="js-save-type-input" type="hidden" value=""/>
+            {{ form_start(form, {'attr': {'id': 'js-b-finish__form'}}) }}
+                {{ form_widget(form.resultPhoto, {'id': 'js-img-input'}) }}
+                {{ form_widget(form.__type, {'id': 'js-save-type-input'}) }}
 
                 <div class="b-wrapper__text b-wrapper__text_1">Выберите эффект</div>
 
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 
