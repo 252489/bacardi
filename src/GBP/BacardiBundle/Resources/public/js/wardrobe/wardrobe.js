@@ -112,14 +112,14 @@ var Wardrobe = {
                 for (i in images) {
                     ctx.drawImage(images[i][0], 0, 0);
                 }
-            };
 
-			return canvas.toDataURL();
+	            Wardrobe.elems.$imgInput.val(canvas.toDataURL());
+	            Wardrobe.elems.$form.submit();
+            };
 		},
 
 		finish: function () {
-			Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
-            Wardrobe.elems.$form.submit();
+			this.getPhotoUrl();
 		}
 
 	},
