@@ -72,7 +72,11 @@ var Wardrobe = {
 				$images         = $('img', Wardrobe.elems.$photo);
 
 			$images.each(function () {
-				images[$(this).css('z-index')] = $(this);
+                var zIndex = $(this).css('z-index');
+
+				if (zIndex != 20) {
+                    images[zIndex] = $(this);
+                }
 			});
 
 			var keys    = Object.keys(images),
@@ -90,17 +94,24 @@ var Wardrobe = {
 
 		getPhotoUrl: function () {
 			var i,
+                img     = new Image(),
 				images  = this.getSortedImages(),
 				canvas  = $('<canvas></canvas>')[0];
-
-            console.log(images);
 
 			canvas.width  = 265;
 			canvas.height = 570;
 
-			for (i in images) {
-				canvas.getContext('2d').drawImage(images[i][0], 0, 0);
-			}
+            img.onload = function () {
+                canvas.getContext('2d').drawImage(img, 0, 0);
+
+                for (i in images) {
+                    canvas.getContext('2d').drawImage(images[i][0], 0, 0);
+                }
+
+                $('body').prepend(canvas);
+            };
+
+            img.src = Wardrobe.elems.$photoFace[0].src;
 
 			return canvas.toDataURL();
 		},
@@ -177,6 +188,7 @@ var Wardrobe = {
 			unwearItem:         '.js-b-wardrobe__block__unwear',
 
 			$photo:             $('#js-b-wardrobe__photo'),
+			$photoFace:         $('#js-b-wardrobe__photo__face'),
 			$ready:             $('#js-b-wardrobe__ready'),
 
             $form:              $('#js-b-wardrobe__form'),
