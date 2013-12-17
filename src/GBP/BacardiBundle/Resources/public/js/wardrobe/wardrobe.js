@@ -2,7 +2,6 @@ var Wardrobe = {
 
 	vars: {
         openedBlock: null,
-		emptyWear: 1,
 		popupCategory: null,
 		defaultPhotoSlots: {},
 		photoSlots: {}
@@ -43,7 +42,7 @@ var Wardrobe = {
 			var $images = $('img', Wardrobe.elems.$photo);
 
 			$images.each(function () {
-				Wardrobe.vars.photoSlots[$(this).attr('data-cat')] = $(this);
+				Wardrobe.vars.defaultPhotoSlots[$(this).attr('data-cat')] = $(this);
 			});
 		},
 
