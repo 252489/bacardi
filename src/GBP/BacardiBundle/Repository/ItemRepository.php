@@ -16,8 +16,10 @@ class ItemRepository extends EntityRepository {
 	{
 		$query = $this->getEntityManager()
 			->createQuery('
-            SELECT i, c FROM GBPBacardiBundle:Item i
+            SELECT i, c, it
+            FROM GBPBacardiBundle:Item i
             JOIN i.category c
+            JOIN i.itemtype it
             WHERE c.isFemale = :isFemale'
 			)->setParameter('isFemale', (bool)$isFemale);
 		try {
