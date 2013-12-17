@@ -60,6 +60,7 @@ var Wardrobe = {
 				$photoImg.remove();
 			}
 
+            Wardrobe.vars.photoSlots[category] = null;
 			$(this).removeClass('active');
 		},
 
