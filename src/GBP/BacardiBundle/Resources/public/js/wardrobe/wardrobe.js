@@ -96,29 +96,30 @@ var Wardrobe = {
 			var i,
                 img     = new Image(),
 				images  = this.getSortedImages(),
-				canvas  = $('<canvas></canvas>')[0];
+				canvas  = $('<canvas></canvas>')[0],
+                ctx     = canvas.getContext('2d');
 
 			canvas.width  = 265;
 			canvas.height = 570;
 
+            img.src = Wardrobe.elems.$photoFace[0].src;
             img.onload = function () {
-                canvas.getContext('2d').drawImage(img, 0, 0);
+                ctx.drawImage(
+                    img, 0, 0, img.width, img.height,
+                    parseInt(Wardrobe.elems.$photoFace.css('left')), parseInt(Wardrobe.elems.$photoFace.css('top')), img.width, img.height
+                );
 
                 for (i in images) {
-                    canvas.getContext('2d').drawImage(images[i][0], 0, 0);
+                    ctx.drawImage(images[i][0], 0, 0);
                 }
-
-                $('body').prepend(canvas);
             };
-
-            img.src = Wardrobe.elems.$photoFace[0].src;
 
 			return canvas.toDataURL();
 		},
 
 		finish: function () {
 			Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
-            //Wardrobe.elems.$form.submit();
+            Wardrobe.elems.$form.submit();
 		}
 
 	},

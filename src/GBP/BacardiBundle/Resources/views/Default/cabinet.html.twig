@@ -26,13 +26,13 @@
                 <div class="b-wardrobe__ready" id="js-b-wardrobe__ready"></div>
 
                 <div class="b-wardrobe__photo" id="js-b-wardrobe__photo">
-                    <img class="{{ is_female ? 'woman' : 'man' }}" src="{{ photodata }}" style="display: block; width: 60px; z-index: 20; top: 64px; left: 111px;">
+                    <img id="js-b-wardrobe__photo__face" class="{{ is_female ? 'woman' : 'man' }}" src="{{ photodata }}"
+                         style="display: block; width: 60px; z-index: 20; {{ is_female ? 'top: 64px; left: 111px;' : 'top: 64px; left: 111px;' }}">
 	                {% if is_female %}
 		                <img src="/bundles/gbpbacardi/img/woman_mask2.png?3" style="z-index: 30">
 	                {% else %}
 		                <img src="/bundles/gbpbacardi/img/belt.png" style="z-index: 52;">
 		                <img src="/bundles/gbpbacardi/img/man_mask2.png?3" style="z-index: 30">
-		                <img src="/bundles/gbpbacardi/img/photo_fon.png" style="z-index: 10">
 
 		                <img src="/upload/items/men_shtani_1.png" style="z-index: 50" data-cat="1">
 		                <img src="/upload/items/men_rubashka_1.png" style="z-index: 40" data-cat="0">
