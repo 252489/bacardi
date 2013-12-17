@@ -32,22 +32,10 @@
                 </div>
 
                 <div class="b-wardrobe__block b-wardrobe__outerwear js-b-wardrobe__block">
-                    <!-- UNWEAR BLOCK -->
-                    <div class="b-wardrobe__block__unwear__wrapper">
-                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear active" data-cat="rubashka">
-                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
-                            Рубашка
-                        </div>
-                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear active" data-cat="jilet">
-                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
-                            Жилет
-                        </div>
-                        <div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear" data-cat="piszhak">
-                            <i class="b-wardrobe__block__unwear-icon">&times;</i>
-                            Пиджак
-                        </div>
-                    </div>
-                    <!-- /UNWEAR BLOCK -->
+
+	                {% if items.outerwear is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.outerwear}) }}
+	                {% endif %}
 
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.outerwear.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
@@ -57,6 +45,9 @@
                     </div>
                 </div>
                 <div class="b-wardrobe__block b-wardrobe__shoes js-b-wardrobe__block">
+	                {% if items.shoes is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.shoes}) }}
+	                {% endif %}
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.shoes.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.shoes is defined %}
@@ -65,6 +56,11 @@
                     </div>
                 </div>
                 <div class="b-wardrobe__block b-wardrobe__accessories js-b-wardrobe__block">
+
+	                {% if items.accessory is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.accessory}) }}
+	                {% endif %}
+
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.accessory.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.accessory is defined %}
@@ -73,6 +69,9 @@
                     </div>
                 </div>
                 <div class="b-wardrobe__block b-wardrobe__necklaces js-b-wardrobe__block">
+	                {% if items.necklace is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.necklace}) }}
+	                {% endif %}
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.necklace.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.necklace is defined %}
@@ -81,6 +80,9 @@
                     </div>
                 </div>
                 <div class="b-wardrobe__block b-wardrobe__pants js-b-wardrobe__block">
+	                {% if items.pants is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.pants}) }}
+	                {% endif %}
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.pants.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.pants is defined %}
@@ -89,6 +91,9 @@
                     </div>
                 </div>
                 <div class="b-wardrobe__block b-wardrobe__headdress js-b-wardrobe__block">
+	                {% if items.headdress is defined %}
+		                {{ include('GBPBacardiBundle:Default:unwear.items.html.twig', {'items' : items.headdress}) }}
+	                {% endif %}
                     <div class="b-wardrobe__block__title js-b-wardrobe__block__title">{{ categories.headdress.getName() }}</div>
                     <div class="b-wardrobe__items js-b-wardrobe__items">
                         {% if items.headdress is defined %}

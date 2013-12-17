@@ -46,6 +46,11 @@ class Item {
 	 */
 	protected $category;
 	/**
+	 * @ORM\ManyToOne(targetEntity="ItemType", inversedBy="items")
+	 * @ORM\JoinColumn(name="itemtype_id", referencedColumnName="id")
+	 */
+	protected $itemtype;
+	/**
 	 * @ORM\ManyToMany(targetEntity="Employee", mappedBy="items")
 	 */
 	protected $employes;
@@ -269,4 +274,27 @@ class Item {
 			$this->previewImage = '/upload/items/thumb_' . $this->getFilePreview()->getClientOriginalName();
 		}
 	}
+
+    /**
+     * Set itemtype
+     *
+     * @param \GBP\BacardiBundle\Entity\ItemType $itemtype
+     * @return Item
+     */
+    public function setItemtype(\GBP\BacardiBundle\Entity\ItemType $itemtype = null)
+    {
+        $this->itemtype = $itemtype;
+
+        return $this;
+    }
+
+    /**
+     * Get itemtype
+     *
+     * @return \GBP\BacardiBundle\Entity\ItemType 
+     */
+    public function getItemtype()
+    {
+        return $this->itemtype;
+    }
 }

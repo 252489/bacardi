@@ -1,0 +1,14 @@
+<!-- UNWEAR BLOCK -->
+<div class="b-wardrobe__block__unwear__wrapper">
+	{% set layers = [] %}
+	{% for item in items %}
+		{% if item.itemtype.id not in layers %}
+			<div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear" data-cat="{{ item.itemtype.name }}">
+				<i class="b-wardrobe__block__unwear-icon">&times;</i>
+				{{ item.itemtype.name }}
+			</div>
+			{% set layers = layers|merge([item.itemtype.id]) %}
+		{% endif %}
+	{% endfor %}
+</div>
+<!-- /UNWEAR BLOCK -->
