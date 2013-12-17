@@ -13,16 +13,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ItemAdmin extends Admin {
+class ItemTypeAdmin extends Admin {
 
 	protected function configureFormFields(FormMapper $formMapper)
 	{
 		$formMapper
 			->add('name', 'text', array('label' => 'Наименование'))
-			->add('category', 'entity', array('class' => 'GBP\BacardiBundle\Entity\Category'))
-			->add('file', 'file', array('label' => 'Изображение на манекене', 'data_class' => null))
-			->add('filePreview', 'file', array('label' => 'Изображение в списке', 'data_class' => null))
-			->add('itemtype', 'entity', array('class' => 'GBP\BacardiBundle\Entity\ItemType', 'label' => 'Тип вещи'))
+			->add('layer', 'text', array('label' => 'Слой'))
 		;
 	}
 
@@ -31,8 +28,7 @@ class ItemAdmin extends Admin {
 	{
 		$datagridMapper
 			->add('name')
-			->add('category')
-			->add('itemtype')
+			->add('layer')
 		;
 	}
 
@@ -41,9 +37,7 @@ class ItemAdmin extends Admin {
 	{
 		$listMapper
 			->addIdentifier('name')
-			->add('category')
-			->add('itemtype')
-			->add('image', 'string', array('label' => 'Фото', 'template' => 'GBPBacardiBundle:Admin:list_image.html.twig'))
+			->add('layer')
 		;
 	}
 }

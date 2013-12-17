@@ -3,7 +3,7 @@
 	{% set layers = [] %}
 	{% for item in items %}
 		{% if item.itemtype.id not in layers %}
-			<div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear" data-cat="{{ item.itemtype.name }}">
+			<div class="b-wardrobe__block__unwear js-b-wardrobe__block__unwear" data-cat="{{ item.itemtype.layer }}">
 				<i class="b-wardrobe__block__unwear-icon">&times;</i>
 				{{ item.itemtype.name }}
 			</div>

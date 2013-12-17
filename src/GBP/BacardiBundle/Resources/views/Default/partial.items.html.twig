@@ -1,10 +1,10 @@
 <!-- ITEMS -->
 {% for item in items %}
-    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item" data-id="{{ item.id }}">
+    <div class="b-wardrobe__popup__item js-b-wardrobe__popup__item" data-id="{{ item.id }}" data-cat="{{ item.itemtype.layer }}">
         <img width="50" data-id="{{ item.id }}" src="{{ item.previewImage }}" alt="{{ item.name }}"/>
 
         <div class="b-wardrobe__popup__item_hidden js-b-wardrobe__popup__item_hidden">
-            <img src="{{ item.image }}" style="z-index: {{ 40 + item.layer * 10 }}" data-cat="{{ item.layer }}"/>
+            <img src="{{ item.image }}" style="z-index: {{ 40 + item.itemtype.layer * 10 }}" data-cat="{{ item.itemtype.layer }}"/>
         </div>
     </div>
 {% endfor %}
