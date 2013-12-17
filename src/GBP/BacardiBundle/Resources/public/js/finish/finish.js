@@ -42,7 +42,7 @@ var Finish = {
             canvas.width  = 384;
             canvas.height = 567;
 
-            canvas.getContext('2d').drawImage(photo[0], 0, 0);
+            canvas.getContext('2d').drawImage(photo[0], -5, -22);
             canvas.getContext('2d').drawImage(frame[0], 0, 0);
 
             return canvas.toDataURL();

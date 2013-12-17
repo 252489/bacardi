@@ -25,7 +25,7 @@ var Wardrobe = {
 		selectItem: function () {
 			var $newImg     = $(Wardrobe.elems.popupItemHidden, this).find('img').clone(),
 				category    = $newImg.attr('data-cat'),
-				$prevImg    = Wardrobe.vars.photoSlots[category];
+				$prevImg    = Wardrobe.vars.photoSlots[category] || Wardrobe.vars.defaultPhotoSlots[category];
 
             if ($prevImg) {
                 $prevImg.replaceWith($newImg);
@@ -93,6 +93,8 @@ var Wardrobe = {
 				images  = this.getSortedImages(),
 				canvas  = $('<canvas></canvas>')[0];
 
+            console.log(images);
+
 			canvas.width  = 265;
 			canvas.height = 570;
 
@@ -105,7 +107,7 @@ var Wardrobe = {
 
 		finish: function () {
 			Wardrobe.elems.$imgInput.val(this.getPhotoUrl());
-            Wardrobe.elems.$form.submit();
+            //Wardrobe.elems.$form.submit();
 		}
 
 	},
