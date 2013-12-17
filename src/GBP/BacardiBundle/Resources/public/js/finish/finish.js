@@ -35,23 +35,29 @@ var Finish = {
         },
 
         getPhotoUrl: function () {
-            var canvas  = $('<canvas></canvas>')[0],
+            var img     = new Image(),
+	            canvas  = $('<canvas></canvas>')[0],
+	            ctx     = canvas.getContext('2d'),
                 photo   = Finish.elems.$resultPhotoImg,
                 frame   = Finish.elems.$resultFrame.find('img:visible');
 
             canvas.width  = 384;
             canvas.height = 567;
 
-            canvas.getContext('2d').drawImage(photo[0], -5, -22);
-            canvas.getContext('2d').drawImage(frame[0], 0, 0);
+	        img.src = photo[0].src;
+	        img.onload = function () {
+		        ctx.drawImage(img, 0, 0, img.width, img.height);
 
-            return canvas.toDataURL();
+		        canvas.getContext('2d').drawImage(frame[0], 0, 0);
+
+		        Finish.elems.$imgInput.val(canvas.toDataURL());
+		        Finish.elems.$form.submit();
+	        };
         },
 
         finish: function (isSaveOnPk) {
-            Finish.elems.$imgInput.val(this.getPhotoUrl());
-            Finish.elems.$saveTypeInput.val(isSaveOnPk);
-            Finish.elems.$form.submit();
+	        Finish.elems.$saveTypeInput.val(isSaveOnPk);
+            this.getPhotoUrl();
         }
 
     },
