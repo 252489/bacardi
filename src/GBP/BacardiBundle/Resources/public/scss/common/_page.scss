@@ -10,6 +10,16 @@ body {
 	z-index: 10;
 }
 
+.b-wrapper__text {
+	display: block;
+	font-size: 18px;
+	font-family: NeoSans;
+	color: #971a1a;
+	text-transform: uppercase;
+	text-align: center;
+	position: absolute;
+}
+
 .b-block {
 	width: 1026px;
 	height: 656px;
