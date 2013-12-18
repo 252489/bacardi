@@ -46,7 +46,7 @@ var Finish = {
 
 	        img.src = photo[0].src;
 	        img.onload = function () {
-		        ctx.drawImage(img, 0, 0, img.width, img.height);
+		        ctx.drawImage(img, 0, 0, img.width, img.height, -5, -22, img.width, img.height);
 
 		        canvas.getContext('2d').drawImage(frame[0], 0, 0);
 

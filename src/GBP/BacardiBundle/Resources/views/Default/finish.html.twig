@@ -5,6 +5,19 @@
         <meta http-equiv="refresh" content="3; url=/finish/2">
     {% endif %}
 {% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/gbpbacardi/css/last.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
+
+    <div class="b-wrapper" id="js-b-wrapper">
+        <div class="b-last b-block">
+            <div class="b-last__btn" onclick="window.close();"></div>
+        </div>
+    </div>
 
 {% endblock %}
