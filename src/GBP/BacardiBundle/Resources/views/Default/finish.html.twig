@@ -16,8 +16,14 @@
 
     <div class="b-wrapper" id="js-b-wrapper">
         <div class="b-last b-block">
-            <div class="b-last__btn" onclick="window.close();"></div>
+            <div class="b-last__btn" id="js-b-last__btn"></div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $('#b-last__btn').on('click', function () {
+        	window.close();
+        });
+    </script>
 
 {% endblock %}
