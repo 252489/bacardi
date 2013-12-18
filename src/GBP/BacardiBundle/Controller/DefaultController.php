@@ -61,23 +61,25 @@ class DefaultController extends Controller
 					if( mb_strtolower( $employee->getCity()->getName(), 'UTF-8' ) == 'город' )
 						throw new \Exception( "Вы не указали город" );
 					$em->flush();
-					$message = \Swift_Message::newInstance()
-						->setSubject('Добро пожаловать на вечеринку Bacardi')
-						->setFrom( $this->container->getParameter('mailer_user') )
-						->setTo($employee->getEmail())
-						->setBody(
-							$this->renderView(
-								'GBPBacardiBundle:Default:email.html.twig',
-								array(
-									'name' => $employee->getName()
-									, 'link' => $link = $this->generateUrl('gbp_bacardi_get_employee', array(
+					$link = $this->generateUrl('gbp_bacardi_get_employee', array(
 										'email' => $employee->getEmail(), 'hash' => $employee->getHash()
 									), UrlGeneratorInterface::ABSOLUTE_URL )
-								)
-							)
-						)
 					;
-					$this->get('mailer')->send($message);
+//					$message = \Swift_Message::newInstance()
+//						->setSubject('Добро пожаловать на вечеринку Bacardi')
+//						->setFrom( $this->container->getParameter('mailer_user') )
+//						->setTo($employee->getEmail())
+//						->setBody(
+//							$this->renderView(
+//								'GBPBacardiBundle:Default:email.html.twig',
+//								array(
+//									'name' => $employee->getName()
+//									, 'link' => $link
+//								)
+//							)
+//						)
+//					;
+//					$this->get('mailer')->send($message);
 					return $this->redirect($link);
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
@@ -116,8 +118,9 @@ class DefaultController extends Controller
 				->add('save', 'submit')
 				->getForm();
 
-			if( $employee->getPhoto() ) return $this->redirect( $this->generateUrl('gbp_bacardi_cabinet') );
-			elseif( $this->get('request')->getMethod() == 'POST' ) {
+//			if( $employee->getPhoto() ) return $this->redirect( $this->generateUrl('gbp_bacardi_cabinet') );
+//			else
+			if( $this->get('request')->getMethod() == 'POST' ) {
 
 				$form->handleRequest($this->get('request'));
 				if( $form->isValid() )
@@ -276,13 +279,11 @@ class DefaultController extends Controller
 						->setTo($employee->getEmail())
 						->attach( \Swift_Attachment::fromPath($filename) )
 						->setBody(
-							'<html>' .
-							' <head></head>' .
-							' <body>' .
-							'  Ваша фотография в стиле 20-х годов сделана. '.
-							' </body>' .
-							'</html>',
-							'text/html'
+							$this->renderView(
+								'GBPBacardiBundle:Default:email.html.twig',
+								array('name' => $employee->getName(), 'is_female' => $employee->getIsFemale())
+							)
+							, 'text/html'
 						)
 					;
 					$this->get('mailer')->send($message);
