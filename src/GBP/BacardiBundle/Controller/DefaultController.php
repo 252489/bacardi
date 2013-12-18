@@ -112,6 +112,8 @@ class DefaultController extends Controller
 		{
 			$this->get('session')->set('user', $employee);
 
+			if( $employee->getResultphoto() ) return $this->redirect( $this->generateUrl('gbp_bacardi_image_options') );
+
 			$form = $this->createFormBuilder($employee)
 				->add('isFemale', 'hidden')
 				->add('photo', 'hidden')
@@ -145,11 +147,6 @@ class DefaultController extends Controller
 		return $this->render('GBPBacardiBundle:Default:photo.html.twig', array('form' => $form->createView()));
 	}
 
-	public function getimageAction($id)
-	{
-
-	}
-
 	public function cabinetAction()
 	{
 		if( !$this->get('session')->get('user') ) return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
@@ -166,6 +163,8 @@ class DefaultController extends Controller
 			);
 			return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
 		}
+
+		if( $employee && $employee->getResultphoto() ) return $this->redirect( $this->generateUrl('gbp_bacardi_image_options') );
 
 		$items = $this->getDoctrine()
 			->getRepository('GBPBacardiBundle:Item')
