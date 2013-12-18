@@ -14,6 +14,10 @@ gbp_bacardi_image_options:
     pattern: /result
     defaults: { _controller: GBPBacardiBundle:Default:result}
 
+gbp_bacardi_finish:
+    pattern: /finish/{getphoto}
+    defaults: { _controller: GBPBacardiBundle:Default:finish}
+
 
 gbp_bacardi_set_item:
     pattern: /cabinet/{id}

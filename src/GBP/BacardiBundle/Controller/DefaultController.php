@@ -288,15 +288,29 @@ class DefaultController extends Controller
 					;
 					$this->get('mailer')->send($message);
 				} else {
-					return new Response($img_data, 200, array(
-						'Content-Type' => 'image/png',
-						'Content-Disposition' => 'attachment; filename="'.$employee->getEmail().'.png"'
-					));
+					$link = $this->generateUrl('gbp_bacardi_finish', array(
+						'getphoto' => true ));
+					return $this->redirect( $link );
 				}
+				return $this->redirect( $this->generateUrl('gbp_bacardi_finish') );
 			}
 		}
-
-
 		return $this->render( 'GBPBacardiBundle:Default:result.html.twig', array('result' => $r_photo, 'form' => $form->createView() ) );
+	}
+
+	public function finishAction($getphoto=null)
+	{
+		if( !$this->get('session')->get('user') ) return $this->redirect( $this->generateUrl('gbp_bacardi_homepage') );
+		$filename = realpath( dirname(__FILE__) . '/../../../../web/upload/' ) . '/' . $this->get('session')->get('user')->getEmail() . '.png';
+		if( $getphoto == 2 && file_exists($filename) )
+		{
+			$img_data = file_get_contents($filename);
+			return new Response($img_data, 200, array(
+				'Content-Type' => 'image/png',
+				'Content-Disposition' => 'attachment; filename="'.$this->get('session')->get('user')->getEmail().'.png"',
+				'refresh' => '5;url=finish'
+			));
+		}
+		return $this->render( 'GBPBacardiBundle:Default:finish.html.twig', array('getphoto' => $getphoto) );
 	}
 }
