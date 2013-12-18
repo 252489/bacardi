@@ -292,7 +292,7 @@ class DefaultController extends Controller
 						'getphoto' => true ));
 					return $this->redirect( $link );
 				}
-				return $this->redirect( $this->generateUrl('gbp_bacardi_finish') );
+				return $this->redirect( $this->generateUrl('gbp_bacardi_finish', array('getphoto' => 0)) );
 			}
 		}
 		return $this->render( 'GBPBacardiBundle:Default:result.html.twig', array('result' => $r_photo, 'form' => $form->createView() ) );
