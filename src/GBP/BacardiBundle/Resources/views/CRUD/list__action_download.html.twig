@@ -1,0 +1,5 @@
+{% if( object.resultPhoto ) %}
+	<a href="{{ admin.generateObjectUrl('download', object) }}" class="calculate_link" title="{{ 'action_donwload'|trans({}, 'SonataAdminBundle') }}">
+		<img src="{{ asset('bundles/gbpbacardi/img/Download.png') }}" alt="download"/>
+	</a>
+{% endif %}
