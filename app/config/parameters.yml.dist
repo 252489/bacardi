@@ -1,15 +1,14 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: bacardi
+    database_user: bacardi
+    database_password: GW67ZZ3XMa
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: info@bacardigetaway.com
+    mailer_password: MjHkUX9Ev9PGTX
+    locale: ru
+    secret: rr5t6VgboyLa1s2FsfAZHfl0TAJHZjMtoAfyCLh3
