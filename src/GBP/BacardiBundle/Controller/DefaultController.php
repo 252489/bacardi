@@ -65,21 +65,21 @@ class DefaultController extends Controller
 										'email' => $employee->getEmail(), 'hash' => $employee->getHash()
 									), UrlGeneratorInterface::ABSOLUTE_URL )
 					;
-//					$message = \Swift_Message::newInstance()
-//						->setSubject('Добро пожаловать на вечеринку Bacardi')
-//						->setFrom( $this->container->getParameter('mailer_user') )
-//						->setTo($employee->getEmail())
-//						->setBody(
-//							$this->renderView(
-//								'GBPBacardiBundle:Default:email.html.twig',
-//								array(
-//									'name' => $employee->getName()
-//									, 'link' => $link
-//								)
-//							)
-//						)
-//					;
-//					$this->get('mailer')->send($message);
+					$message = \Swift_Message::newInstance()
+						->setSubject('Добро пожаловать на вечеринку Bacardi')
+						->setFrom( $this->container->getParameter('mailer_user') )
+						->setTo($employee->getEmail())
+						->setBody(
+							$this->renderView(
+								'GBPBacardiBundle:Default:startemail.html.twig',
+								array(
+									'name' => $employee->getName()
+									, 'link' => $link
+								)
+							)
+						)
+					;
+					$this->get('mailer')->send($message);
 					return $this->redirect($link);
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
