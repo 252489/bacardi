@@ -41,7 +41,7 @@ var Finish = {
                 photo   = Finish.elems.$resultPhotoImg,
                 frame   = Finish.elems.$resultFrame.find('img:visible');
 
-            canvas.width  = 384;
+            canvas.width  = 265;
             canvas.height = 567;
 
 	        img.src = photo[0].src;
