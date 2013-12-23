@@ -16,7 +16,7 @@ services:
         arguments:
             - ~
             - GBP\BacardiBundle\Entity\Employee
-            - ~
+            - GBPBacardiBundle:EmployeeCRUD
         calls:
             - [ setTranslationDomain, [GBPBacardiBundle]]
     sonata.admin.category:

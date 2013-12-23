@@ -1,2 +1,4 @@
 {% extends 'SonataAdminBundle:Core:dashboard.html.twig' %}
-{% block footer %}{% endblock %}
+{% block footer %}
+	<a href="{{ url('sonata_admin_downloadall') }}" class="btn">Скачать все луки</a>
+{% endblock %}

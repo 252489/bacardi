@@ -20,7 +20,8 @@ class EmployeeAdmin extends Admin {
 
 	protected function configureRoutes(RouteCollection $collection)
 	{
-		 $collection->clearExcept(array('list', 'show'));
+		$collection->clearExcept(array('list', 'show'));
+		$collection->add('download');
 	}
 
 	protected function configureFormFields(FormMapper $formMapper)
@@ -52,6 +53,11 @@ class EmployeeAdmin extends Admin {
 			->add('city', 'string', array('label' => 'Город'))
 			->add('photo', 'string', array('label' => 'Фото', 'template' => 'GBPBacardiBundle:Admin:list_photo.html.twig'))
 			->add('resultPhoto', 'string', array('label' => 'Лук', 'template' => 'GBPBacardiBundle:Admin:list_result_photo.html.twig'))
+			->add('_action', 'actions', array(
+				'actions' => array(
+					'download' => array('template' => 'GBPBacardiBundle:CRUD:list__action_download.html.twig'),
+				)
+			))
 		;
 	}
-} 
+}

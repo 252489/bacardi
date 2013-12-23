@@ -23,3 +23,7 @@ gbp_bacardi_set_item:
     pattern: /cabinet/{id}
     defaults: { _controller: GBPBacardiBundle:Default:setitem, _format:json}
     requirements: { _format: json }
+
+sonata_admin_downloadall:
+    pattern:  /admin/downloadall
+    defaults: { _controller: GBPBacardiBundle:Admin:downloadAll }
