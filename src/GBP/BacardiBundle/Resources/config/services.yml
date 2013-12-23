@@ -1,7 +1,12 @@
 parameters:
+    gbp_upload_dir: /
 #    gbp_bacardi.example.class: GBP\BacardiBundle\Example
 
 services:
+    gbp_twig.tripix_extension:
+        class: GBP\BacardiBundle\Twig\Extension\FileExistsExtension
+        tags:
+            - {name: twig.extension}
 #    gbp_bacardi.example:
 #        class: %gbp_bacardi.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

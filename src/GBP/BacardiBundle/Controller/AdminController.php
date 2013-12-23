@@ -25,8 +25,11 @@ class AdminController extends CoreController {
 		foreach( $employees as $employee )
 		{
 			if( !$employee->getResultphoto() ) continue;
-			$photo = str_replace('data:image/png;base64,', '', $employee->getResultphoto());
-			$img_data = base64_decode($photo);
+//			$photo = str_replace('data:image/png;base64,', '', $employee->getResultphoto());
+//			$img_data = base64_decode($photo);
+
+			$filename = realpath( dirname(__FILE__) . '/../../../../web/upload/' ) . '/' . $employee->getEmail() . '.png';
+			$img_data = file_get_contents($filename);
 
 			$zip->addFromString($employee->getName() . '_' . $employee->getSurname() .'.png', $img_data);
 			unset($img_data);

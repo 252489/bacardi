@@ -21,8 +21,10 @@ class EmployeeCRUDController extends CRUDController {
 		if (!$employee) {
 			throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
 		}
-		$photo = str_replace('data:image/png;base64,', '', $employee->getResultphoto());
-		$img_data = base64_decode($photo);
+//		$photo = str_replace('data:image/png;base64,', '', $employee->getResultphoto());
+//		$img_data = base64_decode($photo);
+		$filename = realpath( dirname(__FILE__) . '/../../../../web/upload/' ) . '/' . $employee->getEmail() . '.png';
+		$img_data = file_get_contents($filename);
 		return new Response($img_data, 200, array(
 			'Content-Type' => 'image/png',
 			'Content-Disposition' => 'attachment; filename="'.$employee->getName() . '_' . $employee->getSurname() .'.png"',
