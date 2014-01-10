@@ -57,36 +57,57 @@ class DefaultController extends Controller
 				$em->persist($city);
 				$em->persist($employee);
 
-				$link = $this->generateUrl('gbp_bacardi_get_employee', array(
-					'email' => $employee->getEmail(), 'hash' => $employee->getHash()
-				), UrlGeneratorInterface::ABSOLUTE_URL )
-				;
 				$message = \Swift_Message::newInstance()
 					->setSubject('Добро пожаловать на вечеринку Bacardi')
 					->setFrom( $this->container->getParameter('mailer_user') )
 					->setTo($employee->getEmail())
-					->setBody(
-						$this->renderView(
-							'GBPBacardiBundle:Default:startemail.html.twig',
-							array(
-								'name' => $employee->getName()
-							, 'link' => $link
-							)
-						)
-					)
 				;
 
 				try {
 					if( mb_strtolower( $employee->getCity()->getName(), 'UTF-8' ) == 'город' )
 						throw new \Exception( "Вы не указали город" );
 					$em->flush();
-					$this->get('mailer')->send($message);
+					$link = $this->generateUrl('gbp_bacardi_get_employee', array(
+						'email' => $employee->getEmail(), 'hash' => $employee->getHash()
+					), UrlGeneratorInterface::ABSOLUTE_URL );
+					$this->get('mailer')->send(
+						$message->setBody(
+							$this->renderView(
+								'GBPBacardiBundle:Default:startemail.html.twig',
+								array(
+									'name' => $employee->getName()
+								, 'link' => $link
+								)
+							)
+						)
+					);
 					return $this->redirect($link);
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
 					{
 						$form->addError( new FormError("Такой пользователь уже существует.\nСсылка повторно отправлена на ваш email") );
-						$this->get('mailer')->send($message);
+						/**
+						 * @var $employee Employee
+						 */
+						$employee = $this->getDoctrine()
+							->getRepository('GBPBacardiBundle:Employee')
+							->findOneBy(array('email' => $employee->getEmail()));
+
+						$link = $this->generateUrl('gbp_bacardi_get_employee', array(
+							'email' => $employee->getEmail(), 'hash' => $employee->getHash()
+						), UrlGeneratorInterface::ABSOLUTE_URL );
+
+						$this->get('mailer')->send(
+							$message->setBody(
+								$this->renderView(
+									'GBPBacardiBundle:Default:startemail.html.twig',
+									array(
+										'name' => $employee->getName()
+									, 'link' => $link
+									)
+								)
+							)
+						);
 					}
 				} catch (\Exception $e) {
 					$form->addError( new FormError($e->getMessage()) );
