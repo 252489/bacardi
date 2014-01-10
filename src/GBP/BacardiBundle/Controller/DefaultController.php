@@ -85,7 +85,7 @@ class DefaultController extends Controller
 				} catch( DBALException $e ) {
 					if( $e->getPrevious()->getCode() === '23000' )
 					{
-						$form->addError( new FormError("Такой пользователь уже существует") );
+						$form->addError( new FormError("Такой пользователь уже существует.\nСсылка повторно отправлена на ваш email") );
 						$this->get('mailer')->send($message);
 					}
 				} catch (\Exception $e) {
