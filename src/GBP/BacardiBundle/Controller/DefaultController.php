@@ -107,7 +107,7 @@ class DefaultController extends Controller
 								)
 							)
 						);
-						$form->addError( new FormError("Такой пользователь уже существует.\nСсылка повторно отправлена на ваш email") );
+						$form->addError( new FormError("Такой пользователь уже существует. Ссылка повторно отправлена на ваш email") );
 					}
 				} catch (\Exception $e) {
 					$form->addError( new FormError($e->getMessage()) );
